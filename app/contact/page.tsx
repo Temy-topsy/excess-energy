@@ -6,12 +6,14 @@ import {
   localBusinessSchema,
   breadcrumbSchema,
 } from "@/lib/content/structured-data";
-import { ContactHero } from "@/components/sections/contact/contact-hero";
+import { PageHero } from "@/components/sections/hero/page-hero";
 import { ContactMethods } from "@/components/sections/contact/contact-methods";
 import { ContactFormSection } from "@/components/sections/contact/contact-form-section";
 import { ServiceAreas } from "@/components/sections/contact/service-areas";
 import { ContactFaq } from "@/components/sections/contact/contact-faq";
 import { CtaSection } from "@/components/sections/cta/cta-section";
+import contactHeroDesktop from "@/public/images/hero/contact-hero-desktop.jpg";
+import contactHeroMobile from "@/public/images/hero/contact-hero-mobile.jpg";
 
 /**
  * The contact page. It gives every way to reach Excess Energy in one place:
@@ -40,7 +42,13 @@ export default function ContactPage() {
           ]),
         ]}
       />
-      <ContactHero />
+      <PageHero
+        heading="Talk to a real energy team."
+        description="Call, email, or start a WhatsApp chat. Tell us what you need and we will point you to the right next step, usually the same day."
+        desktopImage={contactHeroDesktop}
+        mobileImage={contactHeroMobile}
+        imageAlt="Contact Excess Energy"
+      />
       <ContactMethods />
       <ContactFormSection />
       <ServiceAreas />

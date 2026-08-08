@@ -46,7 +46,7 @@ function NavLink({
         isDesktop
           ? [
               "relative inline-flex items-center rounded-xs px-1 py-2 text-sm font-medium",
-              "after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-accent",
+              "after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-foreground",
               "after:transition-transform after:duration-[var(--duration-base)] after:ease-[var(--ease-standard)]",
               "hover:after:scale-x-100 focus-visible:after:scale-x-100",
               active

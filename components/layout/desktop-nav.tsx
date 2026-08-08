@@ -22,7 +22,7 @@ function DesktopNav({ className }: DesktopNavProps) {
 
   return (
     <nav aria-label="Primary" className={cn("hidden lg:block", className)}>
-      <ul className="flex items-center gap-1">
+      <ul className="flex items-center gap-6 xl:gap-8">
         {mainNav.map((item) => (
           <li key={item.href}>
             <NavLink

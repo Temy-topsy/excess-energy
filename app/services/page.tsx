@@ -5,6 +5,9 @@ import { JsonLd } from "@/components/common/json-ld";
 import { breadcrumbSchema } from "@/lib/content/structured-data";
 import { ServicesGrid } from "@/components/sections/services/services-grid";
 import { CtaSection } from "@/components/sections/cta/cta-section";
+import { PageHero } from "@/components/sections/hero/page-hero";
+import servicesHeroDesktop from "@/public/images/hero/services-hero-desktop.jpg";
+import servicesHeroMobile from "@/public/images/hero/services-hero-mobile.jpg";
 
 /**
  * The services listing page at /services. It reuses the same ServicesGrid
@@ -33,7 +36,14 @@ export default function ServicesPage() {
           { name: "Services", path: "/services" },
         ])}
       />
-      <ServicesGrid headingAs="h1" />
+      <PageHero
+        heading="Clean energy services."
+        description="We design, install, and support solar, storage, and security systems for homes and businesses across Nigeria."
+        desktopImage={servicesHeroDesktop}
+        mobileImage={servicesHeroMobile}
+        imageAlt="Excess Energy Services"
+      />
+      <ServicesGrid headingAs="h2" />
       <CtaSection
         heading="Not sure which service fits?"
         lead="Start with a free energy assessment and we will recommend the right system for your needs."

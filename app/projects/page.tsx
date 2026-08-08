@@ -4,10 +4,12 @@ import { projects, featuredProjects } from "@/lib/content/projects";
 import { buildMetadata } from "@/lib/content/seo";
 import { JsonLd } from "@/components/common/json-ld";
 import { breadcrumbSchema } from "@/lib/content/structured-data";
-import { ProjectsHero } from "@/components/sections/projects/projects-hero";
+import { PageHero } from "@/components/sections/hero/page-hero";
 import { ProjectsIntro } from "@/components/sections/projects/projects-intro";
 import { ProjectShowcase } from "@/components/sections/projects/project-showcase";
 import { CtaSection } from "@/components/sections/cta/cta-section";
+import projectsHeroDesktop from "@/public/images/hero/projects-hero-desktop.jpg";
+import projectsHeroMobile from "@/public/images/hero/projects-hero-mobile.jpg";
 
 /**
  * The projects listing page. It reads entirely from the projects data: a
@@ -33,7 +35,13 @@ export default function ProjectsPage() {
           { name: "Projects", path: "/projects" },
         ])}
       />
-      <ProjectsHero />
+      <PageHero
+        heading="Clean energy, installed and proven."
+        description="A look at the solar, storage, and security systems we have designed and installed for homes and businesses across Nigeria."
+        desktopImage={projectsHeroDesktop}
+        mobileImage={projectsHeroMobile}
+        imageAlt="Excess Energy Projects"
+      />
       <ProjectsIntro />
       <ProjectShowcase
         overline="Featured projects"

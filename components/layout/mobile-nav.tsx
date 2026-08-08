@@ -47,7 +47,7 @@ function MobileNav() {
         </Button>
       </SheetTrigger>
 
-      <SheetContent side="right" className="w-[min(22rem,88vw)]">
+      <SheetContent side="top" className="rounded-b-2xl pb-8">
         <SheetTitle className="sr-only">Navigation menu</SheetTitle>
         <SheetDescription className="sr-only">
           Site links and ways to get in touch with {""}

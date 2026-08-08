@@ -29,23 +29,21 @@ import { MobileNav } from "./mobile-nav";
 function SiteHeader() {
   return (
     <HeaderShell>
-      <Container className="flex h-header items-center justify-between gap-4">
-        <Logo />
-
-        <div className="flex items-center gap-2 lg:gap-6">
+      <Container className="grid h-header grid-cols-2 items-center gap-4 lg:grid-cols-3">
+        <div className="flex justify-start">
+          <Logo />
+        </div>
+        <div className="hidden justify-center lg:flex">
           <DesktopNav />
-
-          <div className="flex items-center gap-1 sm:gap-2">
-            <ThemeToggle />
-
-            <Button asChild size="default" className="hidden sm:inline-flex">
-              <Link href={primaryCta.href as Route}>
-                {primaryCta.shortLabel ?? primaryCta.label}
-              </Link>
-            </Button>
-
-            <MobileNav />
-          </div>
+        </div>
+        <div className="flex items-center justify-end gap-1 sm:gap-2 lg:gap-4">
+          <ThemeToggle />
+          <Button asChild size="default" className="hidden sm:inline-flex">
+            <Link href={primaryCta.href as Route}>
+              {primaryCta.shortLabel ?? primaryCta.label}
+            </Link>
+          </Button>
+          <MobileNav />
         </div>
       </Container>
     </HeaderShell>

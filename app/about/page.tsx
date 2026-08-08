@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { AboutHero } from "@/components/sections/about/about-hero";
+import { PageHero } from "@/components/sections/hero/page-hero";
 import { CompanyStory } from "@/components/sections/about/company-story";
 import { MissionVision } from "@/components/sections/about/mission-vision";
 import { CoreValues } from "@/components/sections/about/core-values";
@@ -10,6 +10,9 @@ import { CtaSection } from "@/components/sections/cta/cta-section";
 import { JsonLd } from "@/components/common/json-ld";
 import { buildMetadata } from "@/lib/content/seo";
 import { breadcrumbSchema } from "@/lib/content/structured-data";
+import { aboutHero } from "@/lib/content/about";
+import aboutHeroDesktop from "@/public/images/hero/about-hero-desktop.jpg";
+import aboutHeroMobile from "@/public/images/hero/about-hero-mobile.jpg";
 
 /**
  * The About page. It builds trust in a deliberate order: who we are and why we
@@ -35,7 +38,13 @@ export default function AboutPage() {
           { name: "About", path: "/about" },
         ])}
       />
-      <AboutHero />
+      <PageHero
+        heading={aboutHero.heading}
+        description={aboutHero.description}
+        desktopImage={aboutHeroDesktop}
+        mobileImage={aboutHeroMobile}
+        imageAlt="About Excess Energy"
+      />
       <CompanyStory />
       <MissionVision />
       <CoreValues />

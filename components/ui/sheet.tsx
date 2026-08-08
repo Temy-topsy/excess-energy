@@ -32,7 +32,7 @@ function SheetOverlay({
     <Dialog.Overlay
       data-slot="sheet-overlay"
       className={cn(
-        "fixed inset-0 z-overlay bg-brand-dark/60",
+        "fixed inset-0 z-overlay bg-brand-dark/40",
         "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:duration-[var(--duration-base)]",
         "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:duration-[var(--duration-fast)]",
         className,
@@ -42,13 +42,9 @@ function SheetOverlay({
   );
 }
 
-type SheetSide = "left" | "right";
+type SheetSide = "left" | "right" | "top";
 
-const sideClass: Record<SheetSide, string> = {
-  right:
-    "inset-y-0 right-0 h-full border-l data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right",
-  left: "inset-y-0 left-0 h-full border-r data-[state=open]:slide-in-from-left data-[state=closed]:slide-out-to-left",
-};
+
 
 interface SheetContentProps
   extends React.ComponentProps<typeof Dialog.Content> {
@@ -70,11 +66,14 @@ function SheetContent({
       <Dialog.Content
         data-slot="sheet-content"
         className={cn(
-          "fixed z-sheet flex w-[min(20rem,85vw)] flex-col gap-6 bg-background p-6 shadow-lg",
+          "fixed z-sheet flex flex-col gap-6 bg-background/98 p-6 shadow-md",
           "border-border focus:outline-none",
           "data-[state=open]:animate-in data-[state=open]:duration-[var(--duration-slow)] data-[state=open]:ease-[var(--ease-out)]",
           "data-[state=closed]:animate-out data-[state=closed]:duration-[var(--duration-base)] data-[state=closed]:ease-[var(--ease-in)]",
-          sideClass[side],
+          side === "top" ? "inset-x-0 top-0 border-b" : "inset-y-0 h-full w-[min(20rem,85vw)]",
+          side === "right" && "right-0 border-l data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right",
+          side === "left" && "left-0 border-r data-[state=open]:slide-in-from-left data-[state=closed]:slide-out-to-left",
+          side === "top" && "data-[state=open]:slide-in-from-top data-[state=closed]:slide-out-to-top",
           className,
         )}
         {...props}

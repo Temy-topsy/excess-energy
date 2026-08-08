@@ -38,9 +38,9 @@ function HeaderShell({ children }: { children: React.ReactNode }) {
     <header
       data-scrolled={scrolled || undefined}
       className={cn(
-        "sticky top-0 z-header w-full border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-[var(--duration-base)] ease-[var(--ease-standard)]",
+        "sticky top-0 z-header w-full border-b transition-[background-color,border-color,box-shadow] duration-[var(--duration-base)] ease-[var(--ease-standard)]",
         scrolled
-          ? "border-border bg-background/80 shadow-sm backdrop-blur-sm supports-[backdrop-filter]:bg-background/70"
+          ? "border-border/40 bg-background/98 shadow-xs"
           : "border-transparent bg-transparent",
       )}
     >
