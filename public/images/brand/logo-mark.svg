@@ -1,0 +1,23 @@
+<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Excess Energy mark">
+  <!--
+    Temporary brand mark placeholder for Excess Energy. Self contained colors
+    (no currentColor) so it renders identically through next/image on light and
+    dark surfaces. Replace this single file with the final logo asset; nothing
+    else changes. A rounded dark tile carries a bright energy bolt in the brand
+    yellow to orange gradient, echoing the primary palette.
+  -->
+  <rect width="72" height="72" rx="16" fill="#111111"/>
+  <defs>
+    <linearGradient id="ee-bolt" x1="30" y1="12" x2="42" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFC107"/>
+      <stop offset="1" stop-color="#FF8C00"/>
+    </linearGradient>
+  </defs>
+  <path
+    d="M40.5 12L23 39.5H34.5L31.5 60L49 32.5H37.5L40.5 12Z"
+    fill="url(#ee-bolt)"
+    stroke="url(#ee-bolt)"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+</svg>

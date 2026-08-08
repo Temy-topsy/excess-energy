@@ -1,0 +1,13 @@
+<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="72" height="72" rx="16" fill="#111111"/>
+  <defs>
+    <linearGradient id="ee-icon-bolt" x1="30" y1="12" x2="42" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFC107"/>
+      <stop offset="1" stop-color="#FF8C00"/>
+    </linearGradient>
+  </defs>
+  <path
+    d="M40.5 12L23 39.5H34.5L31.5 60L49 32.5H37.5L40.5 12Z"
+    fill="url(#ee-icon-bolt)"
+  />
+</svg>
