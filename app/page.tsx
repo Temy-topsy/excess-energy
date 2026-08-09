@@ -4,7 +4,6 @@ import { Hero } from "@/components/sections/hero/hero";
 import { WhyUs } from "@/components/sections/why-us/why-us";
 import { ServicesGrid } from "@/components/sections/services/services-grid";
 import { FeaturedProjects } from "@/components/sections/projects/featured-projects";
-import { InstallationProcess } from "@/components/sections/process/installation-process";
 import { JsonLd } from "@/components/common/json-ld";
 import { buildMetadata } from "@/lib/content/seo";
 import { localBusinessSchema } from "@/lib/content/structured-data";
@@ -31,7 +30,6 @@ export default function Home() {
       <WhyUs />
       <ServicesGrid />
       <FeaturedProjects />
-      <InstallationProcess />
     </>
   );
 }
