@@ -38,10 +38,10 @@ function HeaderShell({ children }: { children: React.ReactNode }) {
     <header
       data-scrolled={scrolled || undefined}
       className={cn(
-        "sticky top-0 z-header w-full border-b transition-[background-color,border-color,box-shadow] duration-[var(--duration-base)] ease-[var(--ease-standard)]",
+        "fixed top-0 z-header w-full transition-[background-color,border-color,box-shadow] duration-[var(--duration-base)] ease-[var(--ease-standard)]",
         scrolled
-          ? "border-border/40 bg-background/98 shadow-xs"
-          : "border-transparent bg-transparent",
+          ? "bg-background/90 border-b border-border/40 shadow-sm"
+          : "dark bg-transparent border-transparent",
       )}
     >
       {children}

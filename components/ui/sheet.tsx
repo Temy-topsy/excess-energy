@@ -70,10 +70,10 @@ function SheetContent({
           "border-border focus:outline-none",
           "data-[state=open]:animate-in data-[state=open]:duration-[var(--duration-slow)] data-[state=open]:ease-[var(--ease-out)]",
           "data-[state=closed]:animate-out data-[state=closed]:duration-[var(--duration-base)] data-[state=closed]:ease-[var(--ease-in)]",
-          side === "top" ? "inset-x-0 top-0 border-b" : "inset-y-0 h-full w-[min(20rem,85vw)]",
+          side === "top" ? "inset-x-4 top-4 rounded-xl border" : "inset-y-0 h-full w-[min(20rem,85vw)]",
           side === "right" && "right-0 border-l data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right",
           side === "left" && "left-0 border-r data-[state=open]:slide-in-from-left data-[state=closed]:slide-out-to-left",
-          side === "top" && "data-[state=open]:slide-in-from-top data-[state=closed]:slide-out-to-top",
+          side === "top" && "data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-top-2 data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-top-2",
           className,
         )}
         {...props}

@@ -28,7 +28,7 @@ const buttonVariants = cva(
         // Primary conversion action. Yellow fill, dark text, darkens toward
         // orange on hover. Never white text on yellow.
         default:
-          "bg-primary text-primary-foreground shadow-sm ring-1 ring-inset ring-primary/20 hover:bg-accent hover:text-accent-foreground hover:shadow-md hover:-translate-y-[1px] active:translate-y-px active:shadow-sm",
+          "bg-primary text-primary-foreground font-semibold shadow-sm ring-1 ring-inset ring-primary/10 hover:bg-accent hover:text-accent-foreground hover:shadow active:scale-[0.98] active:shadow-sm",
         // Supporting action. Dark fill, white text, lightens one step on hover.
         secondary:
           "bg-secondary text-secondary-foreground shadow-xs hover:bg-[color-mix(in_oklab,var(--secondary),white_10%)] hover:shadow-sm active:shadow-none",

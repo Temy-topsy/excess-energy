@@ -28,6 +28,7 @@ export interface SocialLink {
 
 export const company = {
   name: "Excess Energy",
+  tagline: "Power Beyond Limits.",
   mission:
     "Deliver reliable, affordable, professionally installed clean energy for homes, businesses, and institutions.",
   vision: "Become one of Africa's leading clean energy companies.",
