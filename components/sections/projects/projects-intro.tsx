@@ -23,11 +23,11 @@ function ProjectsIntro() {
             assessment of how a home or business actually uses energy, then a
             design sized to that demand and the outcome the client is after.
           </p>
-          <p className="text-body text-muted-foreground text-pretty">
+          {/* <p className="text-body text-muted-foreground text-pretty">
             The projects below show that approach across solar, battery storage,
             inverters, security, and street lighting. Every one is installed by
             our own team and backed by a one year warranty and ongoing support.
-          </p>
+          </p> */}
         </div>
       </Container>
     </Section>

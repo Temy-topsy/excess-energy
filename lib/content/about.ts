@@ -44,7 +44,7 @@ export const aboutHero = {
   overline: "About Excess Energy",
   heading: "Power your home and business can count on.",
   description:
-    "Excess Energy is a Nigerian clean energy company. We design, install, and maintain solar and battery systems that free homes and businesses from unreliable grid power and the cost of running generators.",
+    "We design, install, and maintain solar and inverter systems that free homes and businesses from unreliable grid power.",
   media: {
     src: solarTeam as StaticImageData,
     alt: "Excess Energy technicians installing a rooftop solar array",
@@ -57,7 +57,7 @@ export const companyStory = {
   paragraphs: [
     "Excess Energy exists for a simple reason: power should be something you can depend on. Too many homes and businesses still plan their day around outages and the cost and noise of a generator.",
     "We design, install, and maintain clean energy systems that change that. Every system is sized to real needs, built with premium components, and installed by trained technicians who stand behind their work.",
-    "The result is dependable, affordable power and far less reliance on the grid or the generator. That is the standard we hold on every project, residential or commercial.",
+    "",
   ],
 } as const;
 
@@ -81,37 +81,37 @@ export const coreValues: AboutFeature[] = [
     icon: Scale,
     title: "Integrity",
     description:
-      "We quote honestly and recommend only what your situation genuinely needs.",
+      "",
   },
   {
     icon: Award,
     title: "Quality",
     description:
-      "We choose durable panels, inverters, and batteries, and install them to last.",
+      "",
   },
   {
     icon: Lightbulb,
     title: "Innovation",
     description:
-      "We keep improving our systems and methods as clean energy technology advances.",
+      "",
   },
   {
     icon: ShieldCheck,
     title: "Reliability",
     description:
-      "We build for uptime, so your power holds steady long after installation day.",
+      "",
   },
   {
     icon: HeartHandshake,
     title: "Customer first",
     description:
-      "We design around your needs and budget, and stay reachable after handover.",
+      "",
   },
   {
     icon: Leaf,
     title: "Sustainability",
     description:
-      "We help you lean less on the grid and on generators, cleanly and quietly.",
+      "",
   },
 ];
 
@@ -148,8 +148,8 @@ export const whyExcess: AboutFeature[] = [
   },
   {
     icon: MapPin,
-    title: "Serving Ogun, Lagos & Ibadan",
-    description: "Local teams across the regions we currently cover.",
+    title: "Serving Nigeria",
+    description: "Local teams across Nigeria.",
   },
   {
     icon: Globe,

@@ -18,17 +18,17 @@ const reassurances = [
   {
     icon: Clock,
     title: "Same day reply",
-    body: `Lines open ${company.availability}, so your message never waits long.`,
+    body: `Lines open ${company.availability}.`,
   },
   {
     icon: ShieldCheck,
-    title: "No obligation",
-    body: "The assessment is free and yours to act on, or not.",
+    title: "Free Assesment",
+    body: "The assessment is free and yours to act on.",
   },
   {
     icon: MapPin,
-    title: "Across the region",
-    body: `Serving ${company.coverageAreas.join(", ")}, and growing.`,
+    title: "All Across Nigeria",
+    body: "Serving Nationwide.",
   },
 ];
 
@@ -41,7 +41,6 @@ function ContactFormSection() {
             overline="Send a message"
             headingId="contact-form-heading"
             heading="Tell us what you need."
-            lead="Share a few details and our team will come back to you with the right next step."
           />
 
           <ul className="flex flex-col gap-5">

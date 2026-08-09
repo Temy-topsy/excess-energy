@@ -84,7 +84,7 @@ function ContactMethods() {
             <div className="flex flex-col gap-1">
               <h3 className="text-h4 text-foreground">Email</h3>
               <p className="text-body-sm text-muted-foreground">
-                Send the details and we will reply the same day.
+                Send us a mail.
               </p>
             </div>
             <Link href={`mailto:${company.email}`} className={`${linkClass} mt-auto break-all`}>

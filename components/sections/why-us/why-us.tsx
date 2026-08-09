@@ -72,9 +72,6 @@ function WhyUs() {
               </p>
             </div>
           </div>
-          <p className="text-body-sm text-muted-foreground sm:max-w-xs sm:text-right">
-            More regions coming as we grow across Nigeria.
-          </p>
         </div>
       </Container>
     </Section>

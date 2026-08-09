@@ -215,7 +215,7 @@ export const projects: Project[] = [
       "Full-coverage CCTV with remote viewing for a business that needed eyes on site around the clock.",
     fullStory: [
       "A business in Lagos wanted reliable eyes on its premises around the clock, indoors and out, with the ability to check in from anywhere.",
-      "We surveyed the site, planned camera positions to remove blind spots, and installed the cameras and recorder with tidy cabling. Remote viewing was set up on the owner's devices so live and recorded footage is a tap away.",
+      "",
     ],
     servicesUsed: ["cctv-systems"],
     challenge:

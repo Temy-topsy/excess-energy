@@ -27,7 +27,7 @@ const steps = [
   {
     icon: PhoneCall,
     title: "We come back with a quote",
-    body: "We reply with a quote and the right next step, usually the same day.",
+    body: "We reply with a quote and the right next step.",
   },
 ];
 

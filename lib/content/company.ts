@@ -28,7 +28,7 @@ export interface SocialLink {
 
 export const company = {
   name: "Excess Energy",
-  tagline: "Power Beyond Limits.",
+  tagline: "",
   mission:
     "Deliver reliable, affordable, professionally installed clean energy for homes, businesses, and institutions.",
   vision: "Become one of Africa's leading clean energy companies.",
@@ -60,7 +60,7 @@ export const company = {
   availability: "24/7",
 
   /** Current coverage. New regions are additive. */
-  coverageAreas: ["Ogun State", "Lagos", "Ibadan"],
+  coverageAreas: ["Nationwide"],
   coverageFuture: "Nationwide across Nigeria",
 
   /**

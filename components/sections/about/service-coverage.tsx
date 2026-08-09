@@ -22,7 +22,7 @@ function ServiceCoverage() {
           overline="Service coverage"
           headingId="coverage-heading"
           heading="Where we work."
-          lead="We currently install and support systems across these regions, with room to grow."
+          lead="We currently install and support systems Nationwide."
           className="max-w-2xl"
         />
 

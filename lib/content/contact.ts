@@ -33,6 +33,11 @@ export const contactFaqs: ContactFaq[] = [
     answer: `Yes. For urgent issues call our emergency line on ${company.emergency.display}, available ${company.availability}.`,
   },
   {
+    question: "Does a free energy assessment cost anyhing?",
+    answer:
+      "No. The assessment is free and there is no obligaion. We review how you use energy and recommend a system sized to it, and you decide from there.",
+  },
+  {
     question: "What should I include when I get in touch?",
     answer:
       "Your name, a phone number, the service you are interested in, and a sentence on what you need. That is enough for us to come back with the right next step.",

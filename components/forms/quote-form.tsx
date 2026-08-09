@@ -111,9 +111,6 @@ function QuoteForm() {
             Send via WhatsApp
             <Send aria-hidden="true" />
           </Button>
-          <p className="text-body-sm text-muted-foreground">
-            This opens WhatsApp with your details prefilled, ready to send.
-          </p>
         </div>
       </form>
     </FormProvider>
