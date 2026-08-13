@@ -18,7 +18,6 @@ function CoreValues() {
           overline="Core values"
           headingId="values-heading"
           heading="The principles behind the work."
-          lead="The principles that shape how we design, install, and support every system."
           className="max-w-2xl"
         />
 

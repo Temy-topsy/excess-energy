@@ -73,7 +73,6 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     coverAlt: "A residential rooftop solar installation",
     overview: [
       "Excess Solar is a complete rooftop solar service for homes and businesses. We assess how you use energy, design a system sized to that demand, then install the panels, inverter, and mounting that bring it to life.",
-      "The result is clean power through the day, lower energy bills, and far less dependence on the grid and the generator. Paired with battery storage, that power carries into the evening and through outages.",
     ],
     benefits: [
       {
@@ -156,25 +155,25 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         icon: Zap,
         title: "Seamless backup",
         description:
-          "Keep essential appliances running the moment the grid drops, with no manual switching.",
+          "",
       },
       {
         icon: Gauge,
         title: "Sized to your load",
         description:
-          "We match the inverter to what you actually run, so nothing is undersized or wasted.",
+          "",
       },
       {
         icon: ShieldCheck,
         title: "Clean, safe wiring",
         description:
-          "Tidy, standards-based installation that protects your appliances and your home.",
+          "",
       },
       {
         icon: Layers,
         title: "Ready to expand",
         description:
-          "Start with backup today and add solar and storage later without replacing the core.",
+          "",
       },
     ],
     included: [
@@ -226,25 +225,25 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         icon: ShieldCheck,
         title: "Power through outages",
         description:
-          "Store energy and keep essential loads running when the grid goes down.",
+          "",
       },
       {
         icon: Sun,
         title: "More from your solar",
         description:
-          "Capture daytime solar you would otherwise lose and use it in the evening.",
+          "",
       },
       {
         icon: Zap,
         title: "Quiet and instant",
         description:
-          "Silent, immediate backup with no start-up delay and none of a generator's fumes.",
+          ""
       },
       {
         icon: Layers,
         title: "Scalable capacity",
         description:
-          "Begin with the capacity you need and add more as your demand increases.",
+          "",
       },
     ],
     included: [
@@ -298,25 +297,25 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         icon: TrendingDown,
         title: "Lower running costs",
         description:
-          "Cut energy spend and reduce the hours spent running on expensive diesel.",
+          "",
       },
       {
         icon: ShieldCheck,
         title: "Dependable uptime",
         description:
-          "Keep critical operations powered so outages cost you less in lost work.",
+          "",
       },
       {
         icon: Layers,
         title: "Scales with you",
         description:
-          "Designed to grow alongside your operation, from a single site to many.",
+          "",
       },
       {
         icon: Leaf,
         title: "Cleaner operations",
         description:
-          "Move toward quieter, cleaner energy and away from constant generator use.",
+          "",
       },
     ],
     included: [

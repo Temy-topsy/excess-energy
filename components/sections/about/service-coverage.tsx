@@ -43,18 +43,7 @@ function ServiceCoverage() {
             ))}
           </Grid>
 
-          <div className="flex items-start gap-4 rounded-md border border-border bg-card p-6 sm:items-center">
-            <span className="flex size-12 shrink-0 items-center justify-center rounded-xs bg-primary/15 text-foreground">
-              <Globe className="size-6" aria-hidden="true" />
-            </span>
-            <p className="text-body-sm text-muted-foreground text-pretty">
-              <span className="font-medium text-foreground">
-                Beyond these regions.{" "}
-              </span>
-              Nationwide projects are available on request as we continue to
-              expand across Nigeria.
-            </p>
-          </div>
+
         </div>
       </Container>
     </Section>

@@ -33,45 +33,37 @@ function WhyUs() {
           overline="Why Excess Energy"
           headingId="why-us-heading"
           heading="Built for reliable power that lasts."
-          lead="The details that keep your power on, from the components we choose to the support that follows."
           className="max-w-2xl"
         />
 
-        <Grid cols={3} gap="lg">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {whyUsReasons.map((reason) => {
             const Icon = reason.icon;
             return (
-              <Card key={reason.title} className="gap-4 p-6">
-                <span className="flex size-12 items-center justify-center rounded-xs bg-primary/15 text-foreground">
-                  <Icon className="size-6" aria-hidden="true" />
+              <Card key={reason.title} className="flex flex-col items-center text-center gap-3 p-5 sm:p-6">
+                <span className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Icon className="size-5" aria-hidden="true" />
                 </span>
-                <div className="flex flex-col gap-1.5">
-                  <h3 className="text-h4 text-foreground">{reason.title}</h3>
-                  <p className="text-body-sm text-muted-foreground text-pretty">
-                    {reason.description}
-                  </p>
-                </div>
+                <h3 className="text-body-lg font-medium text-foreground">{reason.title}</h3>
               </Card>
             );
           })}
-        </Grid>
+        </div>
 
         {/* Coverage. The seventh highlight from the brief, given its own strip so
             the areas served read as a statement, not one card among many. */}
-        <div className="flex flex-col items-start gap-5 rounded-md border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-8">
+        <div className="flex flex-col items-start gap-6 rounded-md border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-8">
           <div className="flex items-center gap-4">
             <span className="flex size-12 shrink-0 items-center justify-center rounded-xs bg-primary/15 text-foreground">
               <MapPin className="size-6" aria-hidden="true" />
             </span>
             <div className="flex flex-col gap-1">
-              <span className="text-overline text-accent uppercase">
-                Coverage
-              </span>
               <p className="text-body-lg font-semibold text-foreground text-balance">
-                Serving {formatAreas(company.coverageAreas)}
+                {formatAreas(company.coverageAreas)}
               </p>
             </div>
           </div>
+
         </div>
       </Container>
     </Section>

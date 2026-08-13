@@ -321,7 +321,7 @@
 
   /* Smooth in-page scrolling, but only when motion is welcome. */
   @media (prefers-reduced-motion: no-preference) {
-    html {
+    html:has(:target) {
       scroll-behavior: smooth;
     }
   }

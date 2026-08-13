@@ -32,35 +32,34 @@ function ServicesGrid({ headingAs = "h2" }: ServicesGridProps) {
         <SectionHeading
           overline="What we do"
           headingId="services-heading"
-          heading="Clean energy systems, end to end."
-          lead="From solar and storage to security and street lighting, designed, installed, and supported by one team."
-          className="max-w-2xl"
+          heading="Services Rendered"
           as={headingAs}
         />
 
-        <Grid cols={3} gap="lg">
-          {availableServices.map((service) => (
-            <ServiceCard key={service.slug} service={service} />
-          ))}
-        </Grid>
+        <div className="flex flex-col gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+            {availableServices.map((service) => (
+              <ServiceCard key={service.slug} service={service} />
+            ))}
+          </div>
+        </div>
+        <SectionHeading
+          heading=""
+          lead="From solar and storage to security and street lighting, designed, installed, and supported by one team."
+          className="max-w-2xl"
+        />
 
         {comingSoonServices.length > 0 ? (
           <div className="flex flex-col gap-6 border-t border-border pt-10 sm:pt-12">
-            <div className="flex flex-col gap-2">
-              <span className="text-overline text-muted-foreground uppercase">
-                On the roadmap
-              </span>
-              <p className="max-w-2xl text-body text-muted-foreground text-pretty">
-                Services we are building next, expanding what a single energy
-                partner can cover.
-              </p>
-            </div>
+            <span className="text-overline text-muted-foreground uppercase">
+              Coming Soon
+            </span>
 
-            <Grid cols={3} gap="lg">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {comingSoonServices.map((service) => (
                 <ServiceCard key={service.slug} service={service} />
               ))}
-            </Grid>
+            </div>
           </div>
         ) : null}
       </Container>

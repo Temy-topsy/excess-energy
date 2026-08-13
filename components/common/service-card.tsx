@@ -25,36 +25,19 @@ function ServiceCard({
 
   if (service.status === "coming-soon") {
     return (
-      <Card className={cn("gap-4 p-6", className)} aria-disabled="true">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex size-12 items-center justify-center rounded-xs bg-muted text-muted-foreground">
-            <Icon className="size-6" aria-hidden="true" />
-          </div>
-          <ComingSoonBadge />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <h3 className="text-h4 text-foreground">{service.name}</h3>
-          <p className="text-body-sm text-muted-foreground">
-            {service.description}
-          </p>
-        </div>
-      </Card>
+      <div className={cn("flex flex-col items-start gap-2 p-4 sm:p-5 rounded-md border border-border/50 bg-muted/30 opacity-60", className)} aria-disabled="true">
+        <h3 className="text-body font-medium text-muted-foreground">{service.name}</h3>
+      </div>
     );
   }
 
   return (
-    <Card interactive className={cn("group relative gap-4 p-6", className)}>
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex size-12 items-center justify-center rounded-xs bg-primary/15 text-foreground transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:bg-primary group-hover:text-primary-foreground">
-          <Icon className="size-6" aria-hidden="true" />
+    <Card interactive className={cn("group relative gap-3 p-4 sm:p-5", className)}>
+      <div className="flex flex-col items-start gap-3">
+        <div className="flex size-10 items-center justify-center rounded-xs bg-primary/15 text-foreground transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:bg-primary group-hover:text-primary-foreground">
+          <Icon className="size-5" aria-hidden="true" />
         </div>
-        <Badge variant="available">Available</Badge>
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        <h3 className="text-h4 text-foreground">
-          {/* The stretched pseudo element makes the whole card the hit target,
-              while the link text stays meaningful for assistive tech. */}
+        <h3 className="text-body-lg font-medium text-foreground">
           <Link
             href={service.href}
             className="rounded-xs outline-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] after:absolute after:inset-0 after:rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 group-hover:text-accent"
@@ -62,15 +45,12 @@ function ServiceCard({
             {service.name}
           </Link>
         </h3>
-        <p className="text-body-sm text-muted-foreground">
-          {service.description}
-        </p>
       </div>
-
-      <span className="mt-auto inline-flex items-center gap-2 text-body-sm font-semibold text-foreground transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:text-accent">
-        Explore service
+      
+      <span className="mt-auto pt-2 flex items-center gap-1.5 text-body-sm font-semibold text-muted-foreground transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] group-hover:text-accent">
+        Explore
         <ArrowRight
-          className="size-4 transition-transform duration-[var(--duration-base)] ease-[var(--ease-standard)] group-hover:translate-x-0.5"
+          className="size-3.5 transition-transform duration-[var(--duration-base)] ease-[var(--ease-standard)] group-hover:translate-x-0.5"
           aria-hidden="true"
         />
       </span>

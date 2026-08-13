@@ -17,7 +17,6 @@ function WhyExcess() {
           overline="Why choose us"
           headingId="why-excess-heading"
           heading="The fundamentals we get right."
-          lead="The strengths behind every installation, from the first visit to long after handover."
           className="max-w-2xl"
         />
 

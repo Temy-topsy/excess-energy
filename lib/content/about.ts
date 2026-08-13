@@ -56,7 +56,6 @@ export const companyStory = {
   heading: "Built to make reliable power the standard.",
   paragraphs: [
     "Excess Energy exists for a simple reason: power should be something you can depend on. Too many homes and businesses still plan their day around outages and the cost and noise of a generator.",
-    "We design, install, and maintain clean energy systems that change that. Every system is sized to real needs, built with premium components, and installed by trained technicians who stand behind their work.",
     "",
   ],
 } as const;
@@ -119,8 +118,7 @@ export const whyExcess: AboutFeature[] = [
   {
     icon: HardHat,
     title: "Professional installation",
-    description:
-      "Trained technicians install every system safely and to standard.",
+    description: "Trained technicians install every system safely and to standard.",
   },
   {
     icon: Award,

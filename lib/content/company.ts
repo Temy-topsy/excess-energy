@@ -30,7 +30,7 @@ export const company = {
   name: "Excess Energy",
   tagline: "",
   mission:
-    "Deliver reliable, affordable, professionally installed clean energy for homes, businesses, and institutions.",
+    "Reliable energy solutions for homes businesses and more",
   vision: "Become one of Africa's leading clean energy companies.",
 
   phones: [
@@ -61,7 +61,7 @@ export const company = {
 
   /** Current coverage. New regions are additive. */
   coverageAreas: ["Nationwide"],
-  coverageFuture: "Nationwide across Nigeria",
+  coverageFuture: "Global",
 
   /**
    * Social profiles surfaced in the footer. Hrefs are null until the real

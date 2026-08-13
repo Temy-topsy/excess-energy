@@ -11,9 +11,9 @@ export interface HeroMedia {
 export const hero = {
   headline: "Power Beyond Limits.",
   subheading:
-    "Excess Energy provides professional energy solutions.",
+    "Reliable energy solutions for homes, businesses & more",
   subheadingShort:
-    "Excess Energy provides professional energy solutions.",
+    "Reliable energy solutions for homes, businesses & more",
   media: {
     desktopSrc: homeHeroDesktop,
     mobileSrc: homeHeroMobile,
