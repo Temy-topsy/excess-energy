@@ -1,8 +1,6 @@
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
-import { Grid } from "@/components/layout/grid";
 import { SectionHeading } from "@/components/common/section-heading";
-import { ValueCard } from "@/components/common/value-card";
 import { coreValues } from "@/lib/content/about";
 
 /**
@@ -21,16 +19,25 @@ function CoreValues() {
           className="max-w-2xl"
         />
 
-        <Grid cols={3} gap="lg">
-          {coreValues.map((value) => (
-            <ValueCard
-              key={value.title}
-              icon={value.icon}
-              title={value.title}
-              description={value.description}
-            />
-          ))}
-        </Grid>
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          {coreValues.map((value) => {
+            const Icon = value.icon;
+            return (
+              <div
+                key={value.title}
+                className="flex min-h-28 flex-col items-center justify-center gap-3 rounded-sm border border-border bg-background px-4 py-5 text-center transition-colors duration-[var(--duration-fast)] hover:border-foreground/20 hover:bg-muted/50 sm:min-h-32 sm:gap-4 sm:px-6"
+              >
+                <Icon
+                  className="size-6 text-accent sm:size-7"
+                  aria-hidden="true"
+                />
+                <h3 className="text-body-lg font-semibold text-foreground">
+                  {value.title}
+                </h3>
+              </div>
+            );
+          })}
+        </div>
       </Container>
     </Section>
   );

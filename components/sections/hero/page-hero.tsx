@@ -35,6 +35,7 @@ export function PageHero({ heading, description, mobileImage, desktopImage, imag
   return (
     <section
       ref={containerRef}
+      data-hero
       className="relative flex min-h-[100svh] w-full flex-col justify-end overflow-hidden pb-12 pt-32 sm:min-h-[70vh] sm:justify-center sm:pb-24 lg:min-h-[85svh]"
     >
       {/* Background Media */}

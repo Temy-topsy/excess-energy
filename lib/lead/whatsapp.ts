@@ -44,7 +44,7 @@ export function buildContactMessage(values: ContactValues): string {
 /** Message for a quote request. */
 export function buildQuoteMessage(values: QuoteValues): string {
   return [
-    `Hello ${company.name}, I would like to request a quote.`,
+    `Hello ${company.name}, I would like to request a free energy assessment.`,
     "",
     `Name: ${values.name}`,
     `Phone: ${values.phone}`,

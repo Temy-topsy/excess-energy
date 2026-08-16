@@ -47,6 +47,7 @@ function Hero() {
   return (
     <section
       ref={containerRef}
+      data-hero
       aria-labelledby="hero-heading"
       className="relative flex min-h-[100svh] w-full flex-col justify-end overflow-hidden pb-12 pt-32 sm:min-h-[85vh] sm:justify-center sm:pb-24 lg:min-h-[100svh]"
     >

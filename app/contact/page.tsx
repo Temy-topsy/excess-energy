@@ -53,11 +53,11 @@ export default function ContactPage() {
       <ContactFormSection />
       <ServiceAreas />
       <ContactFaq />
-      <CtaSection
+      {/* <CtaSection
         heading="Ready when you are."
         lead="Start with a free energy assessment and we will design a system built around your needs."
         headingId="contact-cta-heading"
-      />
+      /> */}
     </>
   );
 }

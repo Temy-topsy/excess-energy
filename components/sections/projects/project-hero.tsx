@@ -19,6 +19,7 @@ import type { Project } from "@/lib/content/projects";
 function ProjectHero({ project }: { project: Project }) {
   return (
     <Section
+      data-hero
       spacing="none"
       aria-labelledby="project-hero-heading"
       className="relative isolate overflow-hidden"

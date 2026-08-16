@@ -23,7 +23,7 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         src: "/images/logos/logo.jpg",
         sizes: "any",
-        type: "image/svg+xml",
+        type: "image/jpeg",
         purpose: "any",
       },
     ],

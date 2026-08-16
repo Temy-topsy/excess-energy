@@ -5,7 +5,6 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Logo } from "./logo";
 import { SocialLinks } from "./social-links";
-import { BackToTop } from "./back-to-top";
 import type { SocialLink } from "@/lib/content/company";
 import { company } from "@/lib/content/company";
 import { footerLinks, legalNav } from "@/lib/content/nav";
@@ -152,7 +151,6 @@ function SiteFooter() {
                 </li>
               ))}
             </ul>
-            <BackToTop className="-ml-3 self-start sm:ml-0 sm:self-auto" />
           </div>
         </div>
       </Container>

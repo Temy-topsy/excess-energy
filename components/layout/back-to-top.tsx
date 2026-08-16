@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -20,6 +22,24 @@ interface BackToTopProps {
 }
 
 function BackToTop({ className }: BackToTopProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const hero = document.querySelector<HTMLElement>(
+      "[data-hero], #main-content > :first-child",
+    );
+    if (!hero) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [pathname]);
+
   function scrollToTop() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -34,14 +54,19 @@ function BackToTop({ className }: BackToTopProps) {
   return (
     <Button
       type="button"
-      variant="ghost"
-      size="sm"
+      variant="default"
+      size="icon"
       onClick={scrollToTop}
       aria-label="Back to top"
-      className={cn("text-muted-foreground hover:text-foreground", className)}
+      className={cn(
+        "fixed right-4 bottom-5 z-[var(--z-index-header)] size-11 rounded-full border border-white/15 bg-brand-dark text-white shadow-md transition-[opacity,transform,background-color] duration-[var(--duration-base)] hover:bg-brand-dark/90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:right-6 sm:bottom-6 sm:size-12",
+        isVisible
+          ? "pointer-events-auto translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-2 opacity-0",
+        className,
+      )}
     >
-      Back to top
-      <ArrowUp aria-hidden="true" />
+      <ArrowUp className="size-5" aria-hidden="true" />
     </Button>
   );
 }

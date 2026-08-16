@@ -34,13 +34,13 @@ export const mainNav: NavLink[] = [
 export const primaryCta: NavLink = {
   label: "Request a Free Energy Assessment",
   shortLabel: "Request Assessment",
-  href: "/contact",
+  href: "/request-quote",
 };
 
 /** The supporting action. Its own dedicated, low friction page. */
 export const secondaryCta: NavLink = {
-  label: "Request a Quote",
-  href: "/request-quote",
+  label: "Contact Us",
+  href: "/contact",
 };
 
 /**
@@ -74,7 +74,7 @@ export const footerLinks: NavLink[] = [
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
   { label: "Contact", href: "/contact" },
-  { label: "Request a Quote", href: "/request-quote" },
+  { label: "Contact Us", href: "/request-quote" },
 ];
 
 /** Legal links in the footer's bottom bar. */

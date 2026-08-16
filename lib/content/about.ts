@@ -53,9 +53,9 @@ export const aboutHero = {
 
 export const companyStory = {
   overline: "Our story",
-  heading: "Built to make reliable power the standard.",
+  heading: "Reliable power. Built for life.",
   paragraphs: [
-    "Excess Energy exists for a simple reason: power should be something you can depend on. Too many homes and businesses still plan their day around outages and the cost and noise of a generator.",
+    "At Excess Energy, we believe reliable power should be the standard. We provide smart, dependable energy solutions that help homes and businesses stay powered, productive and prepared, without constantly planning around power outages",
     "",
   ],
 } as const;
@@ -65,13 +65,13 @@ export const missionVision: AboutStatement[] = [
     icon: Target,
     label: "Mission",
     statement:
-      "Deliver reliable, affordable and sustainable energy solutions backed by professional installation and long-term support.",
+      "To transform the way homes and businesses access power by delivering reliable, efficient, and sustainable energy solutions backed by quality products, expert installation, and lasting support.",
   },
   {
     icon: Eye,
     label: "Vision",
     statement:
-      "Become one of Africa's leading clean energy companies through innovation, quality and customer trust.",
+      "To become a leading African energy company, driving the transition toward smarter, cleaner, and more reliable power through innovation, excellence, and trust.",
   },
 ];
 

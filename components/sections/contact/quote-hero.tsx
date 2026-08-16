@@ -20,6 +20,7 @@ const facts = [
 function QuoteHero() {
   return (
     <Section
+      data-hero
       aria-labelledby="quote-hero-heading"
       className="relative isolate overflow-hidden"
     >
@@ -28,7 +29,7 @@ function QuoteHero() {
           id="quote-hero-heading"
           className="text-h1 text-foreground text-balance sm:text-display"
         >
-          Get a quote built around your needs.
+          Get a free assessment for your home or business.
         </h1>
         <p className="max-w-xl text-body-lg text-muted-foreground text-pretty">
           Share a few details and we will prepare a quote for your project. It

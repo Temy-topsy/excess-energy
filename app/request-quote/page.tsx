@@ -15,9 +15,9 @@ import { CtaSection } from "@/components/sections/cta/cta-section";
  */
 
 export const metadata: Metadata = buildMetadata({
-  title: "Request a Quote",
+  title: "Contact Us",
   description:
-    "Request a quote from Excess Energy. Share a few details about your solar, inverter, battery, CCTV, or street lighting project and we will come back to you the same day.",
+    "Contact Excess Energy directly. Share a few details about your solar, inverter, battery, CCTV, or street lighting project and we will come back to you the same day.",
   path: "/request-quote",
 });
 
@@ -27,7 +27,7 @@ export default function RequestQuotePage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
-          { name: "Request a Quote", path: "/request-quote" },
+          { name: "Contact Us", path: "/request-quote" },
         ])}
       />
       <QuoteHero />

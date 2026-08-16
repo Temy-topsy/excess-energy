@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SkipLink } from "@/components/layout/skip-link";
+import { BackToTop } from "@/components/layout/back-to-top";
 import { JsonLd } from "@/components/common/json-ld";
 import { buildMetadata, siteConfig } from "@/lib/content/seo";
 import {
@@ -45,6 +46,11 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   applicationName: siteConfig.name,
+  icons: {
+    icon: [{ url: "/images/logos/logo.jpg", type: "image/jpeg" }],
+    shortcut: [{ url: "/images/logos/logo.jpg", type: "image/jpeg" }],
+    apple: [{ url: "/images/logos/logo.jpg", type: "image/jpeg" }],
+  },
   ...buildMetadata(),
   robots: {
     index: true,
@@ -88,6 +94,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </main>
           <SiteFooter />
+          <BackToTop />
         </ThemeProvider>
       </body>
     </html>

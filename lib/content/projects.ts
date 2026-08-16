@@ -68,17 +68,16 @@ export const projects: Project[] = [
     description:
       "A full rooftop solar and battery system that keeps a family home powered through grid outages.",
     fullStory: [
-      "A family in Abeokuta wanted to stop planning their evenings around the grid. Outages were frequent, and the generator that filled the gap was noisy, thirsty, and tiring to run night after night.",
-      "We designed a rooftop solar system paired with battery storage, sized around the home's real daily use. Through the day the panels power the house and charge the batteries; after dark and during outages, the stored energy carries the essential circuits without a generator in earshot.",
+      "We designed a rooftop solar system paired with battery storage, sized around the home's real daily use. Through the day the panels power the house and charge the batteries; after dark and during outages, the stored energy carries the essential circuits without a generator in earshot",
     ],
     capacity: "5 kVA inverter, 5 kWh storage",
     servicesUsed: ["excess-solar", "battery-storage", "inverter-installation"],
     challenge:
-      "Frequent outages left the household leaning on a generator every evening, with the noise, fuel cost, and upkeep that come with it.",
+      "",
     solution:
-      "A rooftop solar array paired with battery storage and a matched inverter, sized around the home's daily use so the essential circuits stay covered.",
+      "",
     result:
-      "The home now runs its core loads on solar through the day and holds them on stored power through outages, with the generator kept only as a rare fallback.",
+      "",
     coverImage: solarResidential,
     coverAlt: "Rooftop solar panels installed on a residential home",
     gallery: [
@@ -108,7 +107,7 @@ export const projects: Project[] = [
       "A rooftop array sized to cut daytime energy costs for a busy commercial site.",
     fullStory: [
       "A commercial site in Lagos was carrying steady daytime demand and a diesel bill to match. The business wanted to keep operations running smoothly while spending less on fuel and reducing the hours the generator ran.",
-      "We audited the site's load profile and engineered a rooftop array sized to cover the bulk of that daytime demand, with storage holding the critical circuits. The work was staged around the business's hours so trading was never interrupted.",
+    
     ],
     capacity: "10 kVA system",
     servicesUsed: ["commercial-solar", "battery-storage"],

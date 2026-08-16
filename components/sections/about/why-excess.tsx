@@ -20,15 +20,19 @@ function WhyExcess() {
           className="max-w-2xl"
         />
 
-        <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
           {whyExcess.map((strength) => {
             const Icon = strength.icon;
             return (
-              <div key={strength.title} className="flex gap-4">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-xs bg-primary/15 text-foreground">
-                  <Icon className="size-5" aria-hidden="true" />
-                </span>
-                <div className="flex flex-col gap-1.5">
+              <div
+                key={strength.title}
+                className="flex flex-col gap-4 rounded-sm border border-border bg-card p-4 transition-colors duration-[var(--duration-fast)] last:col-span-2 hover:border-foreground/20 sm:p-6 lg:last:col-span-1"
+              >
+                <Icon
+                  className="size-6 shrink-0 text-accent"
+                  aria-hidden="true"
+                />
+                <div className="flex flex-col gap-2">
                   <h3 className="text-body-lg font-semibold text-foreground">
                     {strength.title}
                   </h3>

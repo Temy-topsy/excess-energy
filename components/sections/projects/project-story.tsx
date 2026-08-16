@@ -36,13 +36,7 @@ function ProjectStory({ project }: { project: Project }) {
   return (
     <Section tone="muted" aria-labelledby="project-story-heading">
       <Container className="flex flex-col gap-10 sm:gap-12">
-        <SectionHeading
-          overline="How we solved it"
-          headingId="project-story-heading"
-          heading="From problem to result."
-          lead="Every installation starts with a real constraint. Here is the one we designed around and what it delivered."
-          className="max-w-2xl"
-        />
+       
 
         <ol className="flex flex-col">
           {steps.map((step, index) => (

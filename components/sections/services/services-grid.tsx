@@ -32,7 +32,7 @@ function ServicesGrid({ headingAs = "h2" }: ServicesGridProps) {
         <SectionHeading
           overline="What we do"
           headingId="services-heading"
-          heading="Services Rendered"
+          heading="Available services"
           as={headingAs}
         />
 

@@ -30,6 +30,7 @@ function ServiceHero({
 
   return (
     <Section
+      data-hero
       spacing="none"
       aria-labelledby="service-hero-heading"
       className="relative isolate overflow-hidden"

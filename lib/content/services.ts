@@ -22,7 +22,7 @@ import type { Service } from "./types";
 export const services: Service[] = [
   {
     slug: "excess-solar",
-    name: "Excess Solar",
+    name: "Residential Solar",
     shortName: "Solar",
     tagline: "Clean power for every roof",
     description:
@@ -44,7 +44,7 @@ export const services: Service[] = [
   },
   {
     slug: "battery-storage",
-    name: "Battery Storage",
+    name: "Inverter Batterties",
     shortName: "Storage",
     tagline: "Store energy, stay powered",
     description:

@@ -39,7 +39,7 @@ function QuoteFormSection() {
           <SectionHeading
             overline="Your details"
             headingId="quote-form-heading"
-            heading="Request your quote."
+            heading="Request your assessment"
             className="mb-8"
           />
           <QuoteForm />

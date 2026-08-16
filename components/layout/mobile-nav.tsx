@@ -47,7 +47,10 @@ function MobileNav() {
         </Button>
       </SheetTrigger>
 
-      <SheetContent side="top" className="rounded-b-2xl pb-8">
+      <SheetContent
+        side="top"
+        className="rounded-b-2xl bg-background/95 pb-8 backdrop-blur-md"
+      >
         <SheetTitle className="sr-only">Navigation menu</SheetTitle>
         <SheetDescription className="sr-only">
           Site links and ways to get in touch with {""}
