@@ -11,14 +11,14 @@ import type { ServiceDetail } from "@/lib/content/service-details";
  * end phones many visitors use. The chevron rotates from the open state with no
  * script. Questions are data, unique to each service.
  */
-function ServiceFaq({ detail }: { detail: ServiceDetail }) {
+function ServiceFaq({ detail }: { detail: Pick<ServiceDetail, "faq"> }) {
   return (
     <Section aria-labelledby="faq-heading">
       <Container className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <SectionHeading
           overline="FAQ"
           headingId="faq-heading"
-          heading="Questions, answered."
+          heading="FAQ"
         />
 
         <div className="flex flex-col divide-y divide-border border-y border-border">

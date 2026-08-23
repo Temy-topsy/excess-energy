@@ -14,7 +14,7 @@ import { company } from "./company";
  */
 
 const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://excessenergy.example"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://excessenergy.app"
 ).replace(/\/+$/, "");
 
 export const siteConfig = {
@@ -41,6 +41,14 @@ export const siteConfig = {
     "solar Ogun",
     "solar Ibadan",
   ],
+} as const;
+
+const socialImage = {
+  url: "/images/seo/excess-energy-og.jpg",
+  width: 1200,
+  height: 630,
+  type: "image/jpeg",
+  alt: "Excess Energy - Power Beyond Limits",
 } as const;
 
 /** Resolve a site relative path to an absolute URL for sitemaps and JSON-LD. */
@@ -94,11 +102,13 @@ export function buildMetadata({
       siteName: siteConfig.name,
       locale: siteConfig.locale,
       type: ogType,
+      images: [socialImage],
     },
     twitter: {
       card: "summary_large_image",
       title: brandedTitle,
       description,
+      images: [socialImage.url],
     },
   };
 }

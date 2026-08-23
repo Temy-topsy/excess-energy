@@ -79,25 +79,25 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         icon: Wallet,
         title: "Lower energy bills",
         description:
-          "Generate your own power through the day and cut what you spend on the grid and on fuel.",
+          "",
       },
       {
         icon: ShieldCheck,
         title: "Power through outages",
         description:
-          "Keep essential appliances running when the grid goes down, especially with storage added.",
+          "",
       },
       {
         icon: Leaf,
         title: "Clean and quiet",
         description:
-          "Silent operation with no fumes, unlike a generator running for hours at a time.",
+          "",
       },
       {
         icon: Award,
         title: "Built to last",
         description:
-          "Durable panels and inverters, installed to a standard that holds up for years.",
+          "",
       },
     ],
     included: [

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/content/seo";
 import { JsonLd } from "@/components/common/json-ld";
 import { breadcrumbSchema } from "@/lib/content/structured-data";
-import { ServicesGrid } from "@/components/sections/services/services-grid";
+import { PackagesGrid } from "@/components/sections/services/packages-grid";
 import { CtaSection } from "@/components/sections/cta/cta-section";
 import { PageHero } from "@/components/sections/hero/page-hero";
 import servicesHeroDesktop from "@/public/images/hero/services-hero-desktop.jpg";
@@ -23,7 +23,7 @@ import servicesHeroMobile from "@/public/images/hero/services-hero-mobile.jpg";
 export const metadata: Metadata = buildMetadata({
   title: "Services",
   description:
-    "Explore Excess Energy's clean energy services: solar, inverter installation, battery storage, commercial solar, CCTV systems, and solar street lighting, installed and supported across Ogun, Lagos, and Ibadan.",
+    "Explore Excess Energy's solar packages, installed and supported across Ogun, Lagos, and Ibadan.",
   path: "/services",
 });
 
@@ -43,7 +43,7 @@ export default function ServicesPage() {
         mobileImage={servicesHeroMobile}
         imageAlt="Excess Energy Services"
       />
-      <ServicesGrid headingAs="h2" />
+      <PackagesGrid />
       <CtaSection
         heading="Not sure which service fits?"
         lead="Start with a free energy assessment and we will recommend the right system for your needs."

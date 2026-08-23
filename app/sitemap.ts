@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { absoluteUrl } from "@/lib/content/seo";
 import { getServiceDetailSlugs } from "@/lib/content/service-details";
+import { getSolarPackageSlugs } from "@/lib/content/packages";
 import { getProjectSlugs } from "@/lib/content/projects";
 // import { getLocationSlugs } from "@/lib/content/locations";
 
@@ -74,6 +75,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
+  const packageRoutes: MetadataRoute.Sitemap = getSolarPackageSlugs().map(
+    (slug) => ({
+      url: absoluteUrl(`/services/excess-solar/${slug}`),
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    }),
+  );
+
   const projectRoutes: MetadataRoute.Sitemap = getProjectSlugs().map((slug) => ({
     url: absoluteUrl(`/projects/${slug}`),
     lastModified,
@@ -90,5 +100,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
   //   priority: 0.8,
   // }));
 
-  return [...staticRoutes, ...serviceRoutes, ...projectRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...packageRoutes, ...projectRoutes];
 }
