@@ -1,5 +1,3 @@
-import { ImageIcon } from "lucide-react";
-
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/common/section-heading";
@@ -18,34 +16,25 @@ import type { ProjectImage } from "@/lib/content/projects";
 function ProjectGallery({ images }: { images: ProjectImage[] }) {
   if (images.length === 0) return null;
 
-  const [lead, ...rest] = images;
-
   return (
     <Section aria-labelledby="project-gallery-heading">
       <Container className="flex flex-col gap-10 sm:gap-12">
         <SectionHeading
           overline="Gallery"
           headingId="project-gallery-heading"
-          heading="A look at the work."
-          lead="From the installed system to the details that make it dependable."
+          heading="Project gallery."
           className="max-w-2xl"
         />
 
-        <div className="flex flex-col gap-6 lg:gap-8">
-          <GalleryImage image={lead} ratio="16/9" sizes="(min-width: 1280px) 1216px, 100vw" />
-
-          {rest.length > 0 ? (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
-              {rest.map((image, index) => (
-                <GalleryImage
-                  key={index}
-                  image={image}
-                  ratio="4/3"
-                  sizes="(min-width: 640px) 50vw, 100vw"
-                />
-              ))}
-            </div>
-          ) : null}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
+          {images.map((image) => (
+            <GalleryImage
+              key={image.src.src}
+              image={image}
+              ratio="4/3"
+              sizes="(min-width: 1280px) 592px, (min-width: 640px) 50vw, 100vw"
+            />
+          ))}
         </div>
       </Container>
     </Section>
@@ -70,14 +59,11 @@ function GalleryImage({
       ratio={ratio}
       src={image.src}
       alt={image.alt}
+      objectFit="contain"
       sizes={sizes}
-      imageProps={image.src ? { placeholder: "blur" } : undefined}
+      imageProps={{ placeholder: "blur" }}
       className="border border-border"
-    >
-      <div className="flex h-full w-full items-center justify-center bg-muted">
-        <ImageIcon className="size-10 text-muted-foreground" aria-hidden="true" />
-      </div>
-    </Media>
+    />
   );
 }
 

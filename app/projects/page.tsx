@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 
-import { projects, featuredProjects } from "@/lib/content/projects";
+import { projects } from "@/lib/content/projects";
 import { buildMetadata } from "@/lib/content/seo";
 import { JsonLd } from "@/components/common/json-ld";
 import { breadcrumbSchema } from "@/lib/content/structured-data";
 import { PageHero } from "@/components/sections/hero/page-hero";
-import { ProjectsIntro } from "@/components/sections/projects/projects-intro";
 import { ProjectShowcase } from "@/components/sections/projects/project-showcase";
 import { CtaSection } from "@/components/sections/cta/cta-section";
 import projectsHeroDesktop from "@/public/images/hero/projects-hero-desktop.jpg";
@@ -22,7 +21,7 @@ import projectsHeroMobile from "@/public/images/hero/projects-hero-mobile.jpg";
 export const metadata: Metadata = buildMetadata({
   title: "Projects",
   description:
-    "Completed solar, battery storage, inverter, CCTV, and solar street lighting installations by Excess Energy across Ogun, Lagos, and Ibadan.",
+    "Explore residential solar, CCTV, commercial solar, and solar street lighting projects completed by Excess Energy.",
   path: "/projects",
 });
 
@@ -42,24 +41,12 @@ export default function ProjectsPage() {
         mobileImage={projectsHeroMobile}
         imageAlt="Excess Energy Projects"
       />
-      <ProjectsIntro />
       <ProjectShowcase
-        overline="Featured projects"
-        heading="Selected work."
-        lead="A closer look at installations that show the range of what we design and deliver."
-        headingId="featured-projects-heading"
-        projects={featuredProjects}
-        tone="default"
-        cols={3}
-      />
-      <ProjectShowcase
-        overline="All projects"
-        heading="The full portfolio."
-        lead="Every installation we have completed, newest work included as it lands."
-        headingId="all-projects-heading"
+        overline="Portfolio"
+        heading="Projects."
+        headingId="projects-portfolio-heading"
         projects={projects}
-        tone="muted"
-        cols={3}
+        cols={2}
         sectionId="all-projects"
       />
       <CtaSection

@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Media } from "@/components/common/media";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/content/projects";
 
@@ -32,46 +31,25 @@ function ProjectCard({
     >
       <Media
         ratio="4/3"
-        src={project.coverImage}
-        alt={project.coverAlt ?? ""}
+        src={project.images[0].src}
+        alt={project.images[0].alt}
         sizes="(min-width: 640px) 45vw, 100vw"
         imageProps={{
-          placeholder: project.coverImage ? "blur" : undefined,
-          className:
-            "object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-standard)] group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100",
+          placeholder: "blur",
+          className: "object-contain",
         }}
         className="rounded-none border-b border-border"
       />
 
-      <div className="flex flex-1 flex-col gap-4 p-6">
-        <div className="flex flex-col gap-2.5">
-          <Badge variant="outline" className="w-fit">
-            {project.serviceType}
-          </Badge>
-          <h3 className="text-h4 text-foreground">
-            <Link
-              href={project.href}
-              className="rounded-xs outline-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] after:absolute after:inset-0 after:rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 group-hover:text-accent"
-            >
-              {project.title}
-            </Link>
-          </h3>
-          <p className="inline-flex items-center gap-1.5 text-body-sm text-muted-foreground">
-            <MapPin className="size-4 shrink-0" aria-hidden="true" />
-            {project.location}
-          </p>
-        </div>
-
-        <p className="text-body-sm text-muted-foreground text-pretty">
-          {project.description}
-        </p>
-
-        {project.capacity ? (
-          <p className="text-body-sm text-muted-foreground">
-            <span className="font-medium text-foreground">Capacity </span>
-            {project.capacity}
-          </p>
-        ) : null}
+      <div className="flex flex-1 flex-col gap-5 p-5 sm:p-6">
+        <h3 className="text-h4 text-foreground">
+          <Link
+            href={project.href}
+            className="rounded-xs outline-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] after:absolute after:inset-0 after:rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 group-hover:text-accent"
+          >
+            {project.title}
+          </Link>
+        </h3>
 
         {/* Styled like an outline button but intentionally non interactive: the
             card's stretched title link owns the navigation and the click. */}

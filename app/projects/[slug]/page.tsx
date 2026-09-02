@@ -4,28 +4,19 @@ import { notFound } from "next/navigation";
 import {
   getProjectBySlug,
   getProjectSlugs,
-  getRelatedProjects,
 } from "@/lib/content/projects";
-import { getServiceBySlug } from "@/lib/content/services";
 import { buildMetadata } from "@/lib/content/seo";
 import { JsonLd } from "@/components/common/json-ld";
 import { breadcrumbSchema } from "@/lib/content/structured-data";
-import type { Service } from "@/lib/content/types";
 import { ProjectHero } from "@/components/sections/projects/project-hero";
-import { ProjectOverview } from "@/components/sections/projects/project-overview";
 import { ProjectGallery } from "@/components/sections/projects/project-gallery";
-import { ProjectStory } from "@/components/sections/projects/project-story";
-import { ProjectServicesUsed } from "@/components/sections/projects/project-services-used";
-import { ProjectShowcase } from "@/components/sections/projects/project-showcase";
 import { CtaSection } from "@/components/sections/cta/cta-section";
 
 /**
  * The one template every project detail page shares. It reads a project from
  * the projects data and composes the sections in a fixed order that tells the
- * story: hero, overview, gallery, the challenge to outcome spine, the services
- * behind it, related work, and a closing call to action. A new project needs no
- * code here; adding it to the data generates its page at build. The project set
- * is known, so any slug off the list is a genuine 404.
+ * three images followed by a closing call to action. A new project needs no
+ * page implementation; adding it to the data generates its route at build.
  */
 
 /** Prerender one page per project. */
@@ -64,12 +55,6 @@ export default async function ProjectPage({
 
   // Resolve the project's service slugs to full records, dropping any that no
   // longer exist so a stale slug never breaks the page.
-  const services = project.servicesUsed
-    .map((serviceSlug) => getServiceBySlug(serviceSlug))
-    .filter((service): service is Service => Boolean(service));
-
-  const related = getRelatedProjects(slug, 3);
-
   return (
     <>
       <JsonLd
@@ -80,19 +65,7 @@ export default async function ProjectPage({
         ])}
       />
       <ProjectHero project={project} />
-      <ProjectOverview project={project} />
-      <ProjectGallery images={project.gallery} />
-      <ProjectStory project={project} />
-      <ProjectServicesUsed services={services} />
-      <ProjectShowcase
-        overline="More work"
-        heading="Related projects."
-        lead="Other installations that share an approach or a service with this one."
-        headingId="related-projects-heading"
-        projects={related}
-        tone="muted"
-        cols={3}
-      />
+      <ProjectGallery images={project.images.slice(1)} />
       <CtaSection
         heading="Have a project like this in mind?"
         lead="Start with a free energy assessment and we will design a system built around your needs."

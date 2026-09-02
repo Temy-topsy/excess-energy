@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Calendar, Layers, MapPin } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
@@ -7,14 +7,8 @@ import { Media } from "@/components/common/media";
 import type { Project } from "@/lib/content/projects";
 
 /**
- * The project detail hero. Text led and editorial: a quiet link back to the
- * portfolio, the title, a short description, and a compact meta row that carries
- * the project's identity (where, when, and the installed capacity) in one place,
- * so no later section has to repeat it.
- *
- * The cover renders through Media, so it degrades to a branded placeholder when
- * a project ships without photography. It is the one preloaded image on the
- * page; every gallery image below lazy loads.
+ * The project detail hero pairs a quiet link back to the portfolio and project
+ * title with the lead image. The remaining images lazy load in the gallery below.
  */
 function ProjectHero({ project }: { project: Project }) {
   return (
@@ -42,42 +36,8 @@ function ProjectHero({ project }: { project: Project }) {
               >
                 {project.title}
               </h1>
-              <p className="max-w-xl text-body-lg text-muted-foreground text-pretty">
-                {project.description}
-              </p>
             </div>
 
-            <dl className="mt-1 flex flex-wrap gap-x-8 gap-y-4">
-              <div className="flex flex-col gap-1">
-                <dt className="text-overline uppercase text-muted-foreground">
-                  Location
-                </dt>
-                <dd className="inline-flex items-center gap-1.5 text-body-sm font-medium text-foreground">
-                  <MapPin className="size-4 shrink-0 text-accent" aria-hidden="true" />
-                  {project.location}
-                </dd>
-              </div>
-              <div className="flex flex-col gap-1">
-                <dt className="text-overline uppercase text-muted-foreground">
-                  Completed
-                </dt>
-                <dd className="inline-flex items-center gap-1.5 text-body-sm font-medium text-foreground">
-                  <Calendar className="size-4 shrink-0 text-accent" aria-hidden="true" />
-                  {project.completionDate}
-                </dd>
-              </div>
-              {project.capacity ? (
-                <div className="flex flex-col gap-1">
-                  <dt className="text-overline uppercase text-muted-foreground">
-                    Capacity
-                  </dt>
-                  <dd className="inline-flex items-center gap-1.5 text-body-sm font-medium text-foreground">
-                    <Layers className="size-4 shrink-0 text-accent" aria-hidden="true" />
-                    {project.capacity}
-                  </dd>
-                </div>
-              ) : null}
-            </dl>
           </div>
 
           <div className="relative lg:justify-self-end lg:w-full">
@@ -87,19 +47,14 @@ function ProjectHero({ project }: { project: Project }) {
             />
             <Media
               ratio="4/3"
-              src={project.coverImage}
-              alt={project.coverAlt ?? ""}
-              preload={Boolean(project.coverImage)}
+              src={project.images[0].src}
+              alt={project.images[0].alt}
+              objectFit="contain"
+              preload
               sizes="(min-width: 1024px) 46vw, 100vw"
-              imageProps={project.coverImage ? { placeholder: "blur" } : undefined}
+              imageProps={{ placeholder: "blur" }}
               className="relative border border-border shadow-lg"
-            >
-              <div className="flex h-full w-full items-center justify-center bg-muted">
-                <span className="flex size-20 items-center justify-center rounded-md bg-primary/15 text-foreground">
-                  <Layers className="size-10" aria-hidden="true" />
-                </span>
-              </div>
-            </Media>
+            />
           </div>
         </div>
       </Container>
