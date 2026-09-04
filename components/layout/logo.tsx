@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import logoMark from "@/public/images/logos/logo.jpg";
+import logoMark from "@/public/images/logos/logo.png";
 import { company } from "@/lib/content/company";
 import { cn } from "@/lib/utils";
 

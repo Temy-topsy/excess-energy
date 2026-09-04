@@ -47,9 +47,9 @@ export const metadata: Metadata = {
   },
   applicationName: siteConfig.name,
   icons: {
-    icon: [{ url: "/images/logos/logo.jpg", type: "image/jpeg" }],
-    shortcut: [{ url: "/images/logos/logo.jpg", type: "image/jpeg" }],
-    apple: [{ url: "/images/logos/logo.jpg", type: "image/jpeg" }],
+    icon: [{ url: "/images/logos/logo.png", type: "image/jpeg" }],
+    shortcut: [{ url: "/images/logos/logo.png", type: "image/jpeg" }],
+    apple: [{ url: "/images/logos/logo.png", type: "image/jpeg" }],
   },
   ...buildMetadata(),
   robots: {
