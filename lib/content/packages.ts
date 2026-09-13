@@ -4,7 +4,7 @@ import type { StaticImageData } from "next/image";
 
 import package1kva from "@/public/images/services/excess-energy-services-1kva.jpg";
 import package2_5kva from "@/public/images/services/excess-energy-services-2.5kva.jpg";
-import package3kva from "@/public/images/services/excess-energy-services-3kva.jpeg";
+import package3kva from "@/public/images/services/excess-energy-services-3kva.jpg";
 import package4kva from "@/public/images/services/excess-energy-services-4kva.jpg";
 import package5kva from "@/public/images/services/excess-energy-services-5kva.jpg";
 import package8kva from "@/public/images/services/excess-energy-services-8kva.jpg";
