@@ -49,6 +49,19 @@ const nextConfig: NextConfig = {
   images: {
     // Serve AVIF where supported, WebP otherwise: smaller photos, better LCP.
     formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "azafbrsosoczdgywntti.supabase.co",
+        port: "",
+        pathname: "/storage/v1/object/public/**",
+      },
+    ],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "10mb",
+    },
   },
   async headers() {
     return [

@@ -3,10 +3,11 @@ import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/common/section-heading";
 import { PackageCard } from "@/components/common/package-card";
-import { solarPackages } from "@/lib/content/packages";
+import { getSolarPackages } from "@/lib/content/packages";
 import { Button } from "@/components/ui/button";
 
-function FeaturedPackage() {
+async function FeaturedPackage() {
+  const solarPackages = await getSolarPackages();
   const featured = solarPackages.find((p) => p.slug === "1kva");
 
   if (!featured) return null;

@@ -7,19 +7,20 @@ import { Section } from "@/components/layout/section";
 import type { SolarPackage } from "@/lib/content/packages";
 
 function PackageDetail({ solarPackage }: { solarPackage: SolarPackage }) {
-  const installationImage = (
-    src: SolarPackage["inverterImage"],
-    alt: string,
-  ) => (
-    <Image
-      src={src}
-      alt={alt}
-      width={1200}
-      height={900}
-      unoptimized={typeof src === "string"}
-      className="h-auto w-full object-cover"
-    />
-  );
+  const installationImage = (src: SolarPackage["inverterImage"], alt: string) =>
+    src ? (
+      <Image
+        src={src as string}
+        alt={alt}
+        width={1200}
+        height={900}
+        className="h-auto w-full object-cover"
+      />
+    ) : (
+      <div className="flex h-[300px] w-full items-center justify-center text-sm font-medium text-muted-foreground">
+        No Image Available
+      </div>
+    );
 
   return (
     <>
@@ -37,14 +38,19 @@ function PackageDetail({ solarPackage }: { solarPackage: SolarPackage }) {
             <h1 id="package-heading" className="text-h1 text-foreground sm:text-display">
               {solarPackage.name}
             </h1>
-            <div className="overflow-hidden rounded-md border border-border bg-muted">
-              <Image
-              src={solarPackage.packageImage}
-              alt={solarPackage.packageAlt}
-              preload
-              placeholder="blur"
-              className="h-auto w-full object-contain"
-              />
+            <div className="overflow-hidden rounded-md border border-border bg-muted flex items-center justify-center min-h-[300px]">
+              {solarPackage.packageImage ? (
+                <Image
+                  src={solarPackage.packageImage as string}
+                  alt={solarPackage.packageAlt}
+                  priority
+                  width={800}
+                  height={600}
+                  className="h-auto w-full object-contain"
+                />
+              ) : (
+                <span className="text-muted-foreground font-medium">No Image Available</span>
+              )}
             </div>
           </div>
         </Container>

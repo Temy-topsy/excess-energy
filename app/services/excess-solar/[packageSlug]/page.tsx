@@ -10,8 +10,9 @@ import { getSolarPackage, getSolarPackageSlugs } from "@/lib/content/packages";
 import { buildMetadata } from "@/lib/content/seo";
 import { breadcrumbSchema, serviceSchema } from "@/lib/content/structured-data";
 
-export function generateStaticParams(): { packageSlug: string }[] {
-  return getSolarPackageSlugs().map((packageSlug) => ({ packageSlug }));
+export async function generateStaticParams(): Promise<{ packageSlug: string }[]> {
+  const slugs = await getSolarPackageSlugs();
+  return slugs.map((packageSlug) => ({ packageSlug }));
 }
 
 export const dynamicParams = false;
@@ -22,7 +23,7 @@ export async function generateMetadata({
   params: Promise<{ packageSlug: string }>;
 }): Promise<Metadata> {
   const { packageSlug } = await params;
-  const solarPackage = getSolarPackage(packageSlug);
+  const solarPackage = await getSolarPackage(packageSlug);
   if (!solarPackage) return {};
 
   return buildMetadata({
@@ -38,7 +39,7 @@ export default async function SolarPackagePage({
   params: Promise<{ packageSlug: string }>;
 }) {
   const { packageSlug } = await params;
-  const solarPackage = getSolarPackage(packageSlug);
+  const solarPackage = await getSolarPackage(packageSlug);
   if (!solarPackage) notFound();
 
   return (

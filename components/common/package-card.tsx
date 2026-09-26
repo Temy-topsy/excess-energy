@@ -18,14 +18,19 @@ function PackageCard({
       interactive
       className={cn("group min-w-0 overflow-hidden p-0", className)}
     >
-      <div className="aspect-[4/3] overflow-hidden border-b border-border bg-muted sm:aspect-[5/4]">
-        <Image
-          src={solarPackage.packageImage}
-          alt={solarPackage.packageAlt}
-          placeholder="blur"
-          sizes="(min-width: 640px) 50vw, 100vw"
-          className="h-full w-full object-contain transition-transform duration-[var(--duration-slow)] ease-[var(--ease-standard)] group-hover:scale-[1.015] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-        />
+      <div className="aspect-[4/3] overflow-hidden border-b border-border bg-muted flex items-center justify-center sm:aspect-[5/4]">
+        {solarPackage.packageImage ? (
+          <Image
+            src={solarPackage.packageImage as string}
+            alt={solarPackage.packageAlt}
+            width={600}
+            height={450}
+            sizes="(min-width: 640px) 50vw, 100vw"
+            className="h-full w-full object-contain transition-transform duration-[var(--duration-slow)] ease-[var(--ease-standard)] group-hover:scale-[1.015] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          />
+        ) : (
+          <span className="text-muted-foreground font-medium text-sm">No Image Available</span>
+        )}
       </div>
 
       <div className="flex items-center justify-between gap-3 p-4 sm:gap-4 sm:p-5">

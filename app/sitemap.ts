@@ -17,7 +17,7 @@ import { getProjectSlugs } from "@/lib/content/projects";
  * they join the sitemap automatically.
  */
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -75,7 +75,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  const packageRoutes: MetadataRoute.Sitemap = getSolarPackageSlugs().map(
+  const slugs = await getSolarPackageSlugs();
+  const packageRoutes: MetadataRoute.Sitemap = slugs.map(
     (slug) => ({
       url: absoluteUrl(`/services/excess-solar/${slug}`),
       lastModified,

@@ -2,9 +2,10 @@ import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/common/section-heading";
 import { PackageCard } from "@/components/common/package-card";
-import { solarPackages } from "@/lib/content/packages";
+import { getSolarPackages } from "@/lib/content/packages";
 
-function PackagesGrid() {
+async function PackagesGrid() {
+  const solarPackages = await getSolarPackages();
   return (
     <Section id="packages" aria-labelledby="packages-heading">
       <Container className="flex flex-col gap-10 sm:gap-12">
