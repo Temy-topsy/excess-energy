@@ -5,6 +5,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { getImageProps } from "next/image";
 
 interface PageHeroProps {
   heading: string;
@@ -32,6 +33,10 @@ export function PageHero({ heading, description, mobileImage, desktopImage, imag
     { dependencies: [prefersReducedMotion], scope: containerRef }
   );
 
+  const commonProps = { alt: imageAlt, fill: true, priority: true, sizes: "100vw", placeholder: "blur" as const };
+  const { props: { srcSet: desktopSrcSet, ...desktopRest } } = getImageProps({ ...commonProps, src: desktopImage });
+  const { props: { srcSet: mobileSrcSet, ...mobileRest } } = getImageProps({ ...commonProps, src: mobileImage });
+
   return (
     <section
       ref={containerRef}
@@ -40,22 +45,14 @@ export function PageHero({ heading, description, mobileImage, desktopImage, imag
     >
       {/* Background Media */}
       <div className="absolute inset-0 -z-10 h-full w-full">
-        <Image
-          src={mobileImage}
-          alt={imageAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center sm:hidden"
-        />
-        <Image
-          src={desktopImage}
-          alt={imageAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="hidden object-cover object-center sm:block"
-        />
+        <picture>
+          <source media="(min-width: 640px)" srcSet={desktopSrcSet} />
+          <img
+            srcSet={mobileSrcSet}
+            {...mobileRest}
+            className="h-full w-full object-cover object-center"
+          />
+        </picture>
         <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
       </div>
 

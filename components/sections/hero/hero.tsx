@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { hero } from "@/lib/content/hero";
 import { primaryCta, secondaryCta } from "@/lib/content/nav";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { getImageProps } from "next/image";
 
 /**
  * The redesigned homepage hero. Uses a full viewport background image with
@@ -44,6 +45,10 @@ function Hero() {
     { dependencies: [prefersReducedMotion], scope: containerRef }
   );
 
+  const commonProps = { alt: hero.media.alt, fill: true, priority: true, sizes: "100vw", placeholder: "blur" as const };
+  const { props: { srcSet: desktopSrcSet, ...desktopRest } } = getImageProps({ ...commonProps, src: hero.media.desktopSrc });
+  const { props: { srcSet: mobileSrcSet, ...mobileRest } } = getImageProps({ ...commonProps, src: hero.media.mobileSrc });
+
   return (
     <section
       ref={containerRef}
@@ -53,24 +58,14 @@ function Hero() {
     >
       {/* Background Media */}
       <div className="absolute inset-0 -z-10 h-full w-full">
-        {/* Mobile Portrait */}
-        <Image
-          src={hero.media.mobileSrc}
-          alt={hero.media.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center sm:hidden"
-        />
-        {/* Desktop Landscape */}
-        <Image
-          src={hero.media.desktopSrc}
-          alt={hero.media.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="hidden object-cover object-center sm:block"
-        />
+        <picture>
+          <source media="(min-width: 640px)" srcSet={desktopSrcSet} />
+          <img
+            srcSet={mobileSrcSet}
+            {...mobileRest}
+            className="h-full w-full object-cover object-center"
+          />
+        </picture>
         {/* Subtle Scrim for text readability */}
         <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
       </div>

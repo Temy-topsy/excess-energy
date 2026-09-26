@@ -32,9 +32,9 @@ export const mainNav: NavLink[] = [
 /** The single conversion action. Present in the header at every breakpoint.
  * The header uses the short label where horizontal space is tight. */
 export const primaryCta: NavLink = {
-  label: "Request a Free Energy Assessment",
-  shortLabel: "Request Assessment",
-  href: "/request-quote",
+  label: "View Solar Packages",
+  shortLabel: "View Packages",
+  href: "/#packages",
 };
 
 /** The supporting action. Its own dedicated, low friction page. */

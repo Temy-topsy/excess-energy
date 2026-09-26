@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero/hero";
 import { WhyUs } from "@/components/sections/why-us/why-us";
 import { ServicesGrid } from "@/components/sections/services/services-grid";
+import { FeaturedPackage } from "@/components/sections/services/featured-package";
 import { FeaturedProjects } from "@/components/sections/projects/featured-projects";
 import { JsonLd } from "@/components/common/json-ld";
 import { buildMetadata } from "@/lib/content/seo";
@@ -28,6 +29,7 @@ export default function Home() {
       <JsonLd data={localBusinessSchema()} />
       <Hero />
       <WhyUs />
+      <FeaturedPackage />
       <ServicesGrid />
       <FeaturedProjects />
     </>

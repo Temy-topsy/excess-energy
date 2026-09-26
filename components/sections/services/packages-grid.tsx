@@ -6,7 +6,7 @@ import { solarPackages } from "@/lib/content/packages";
 
 function PackagesGrid() {
   return (
-    <Section aria-labelledby="packages-heading">
+    <Section id="packages" aria-labelledby="packages-heading">
       <Container className="flex flex-col gap-10 sm:gap-12">
         <SectionHeading
           overline="What we do"

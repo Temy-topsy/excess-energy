@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SkipLink } from "@/components/layout/skip-link";
 import { BackToTop } from "@/components/layout/back-to-top";
+import { WhatsAppButton } from "@/components/common/whatsapp-button";
 import { JsonLd } from "@/components/common/json-ld";
 import { buildMetadata, siteConfig } from "@/lib/content/seo";
 import {
@@ -95,6 +96,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </main>
           <SiteFooter />
           <BackToTop />
+          <WhatsAppButton />
         </ThemeProvider>
       </body>
     </html>
