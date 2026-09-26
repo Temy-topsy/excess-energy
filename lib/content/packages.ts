@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import { Award, Leaf, ShieldCheck, Wallet } from "lucide-react";
 import { serviceDetails } from "./service-details";
 import { supabase } from "@/lib/cms/supabase";
+import { unstable_noStore as noStore } from "next/cache";
 
 export interface PackageBenefit {
   icon: LucideIcon;
@@ -34,6 +35,7 @@ export const defaultBenefits = packageBenefits;
 export const defaultFaq = packageFaq;
 
 export async function getSolarPackages(): Promise<SolarPackage[]> {
+  noStore();
   const { data, error } = await supabase
     .from("solar_packages")
     .select("*")
