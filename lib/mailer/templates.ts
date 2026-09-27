@@ -1,5 +1,5 @@
 export const DEFAULT_SENDER_NAME = "Temy From Excess energy";
-export const DEFAULT_SENDER_EMAIL = "info.excessenergy@gmail.com";
+export const DEFAULT_SENDER_EMAIL = "info.xsenergy1@gmail.com";
 export const DEFAULT_FROM = `"${DEFAULT_SENDER_NAME}" <${DEFAULT_SENDER_EMAIL}>`;
 
 /**

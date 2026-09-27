@@ -4,7 +4,7 @@ import { wrapEmailHtml, DEFAULT_FROM } from "./templates";
 export * from "./templates";
 
 export function getTransporter() {
-  const user = process.env.EMAIL_USER || "info.excessenergy@gmail.com";
+  const user = process.env.EMAIL_USER || "info.xsenergy1@gmail.com";
   const pass = (process.env.EMAIL_PASS || "").replace(/\s+/g, ""); // strip any accidental spaces
 
   if (!pass) {
