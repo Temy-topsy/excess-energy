@@ -133,13 +133,13 @@ function SiteFooter() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col-reverse items-center justify-center gap-4 border-t border-border pt-8 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
           <p className="text-caption text-muted-foreground">
             © {year} {company.name}. All rights reserved.
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-            <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:justify-start">
               {legalNav.map((link) => (
                 <li key={link.href}>
                   <Link
