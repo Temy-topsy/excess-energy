@@ -10,6 +10,7 @@ import { company } from "@/lib/content/company";
 import { footerLinks, legalNav } from "@/lib/content/nav";
 import { availableServices } from "@/lib/content/services";
 import { buildWhatsappUrl } from "@/lib/lead/whatsapp";
+import { NewsletterBox } from "@/components/common/newsletter-box";
 
 /**
  * The global site footer. A calm, spacious light surface (muted, not the dark
@@ -49,6 +50,8 @@ function SiteFooter() {
   return (
     <footer className="border-t border-border bg-surface-footer text-foreground">
       <Container className="flex flex-col gap-12 py-16 md:py-20">
+        <NewsletterBox />
+
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* Brand */}
           <div className="flex flex-col gap-5 sm:col-span-2 lg:col-span-4">

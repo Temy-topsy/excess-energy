@@ -3,26 +3,25 @@ import Image from "next/image";
 import { getSolarPackages } from "@/lib/content/packages";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { logoutAction } from "@/app/admin/actions";
 import { DeletePackageButton } from "./delete-button";
+import { AdminHeader } from "@/components/admin/admin-header";
 
 export default async function AdminPackagesPage() {
   const packages = await getSolarPackages();
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
+      <AdminHeader />
+
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground">Solar Packages</h1>
           <p className="text-muted-foreground mt-1">Manage your website's solar packages.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div>
           <Button asChild>
             <Link href="/admin/packages/new">Create Package</Link>
           </Button>
-          <form action={logoutAction}>
-            <Button variant="outline" type="submit">Log Out</Button>
-          </form>
         </div>
       </div>
 
