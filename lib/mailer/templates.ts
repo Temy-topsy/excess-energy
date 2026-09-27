@@ -105,8 +105,8 @@ export function wrapEmailHtml(contentHtml: string, title?: string): string {
       ${contentHtml}
     </div>
     <div class="footer">
-      <p style="margin: 0 0 6px 0;">Sent with ⚡ by <strong>Temy from Excess Energy</strong></p>
-      <p style="margin: 0;">Visit us at <a href="https://excessenergy.app">excessenergy.app</a></p>
+      <p style="margin: 0 0 4px 0; font-weight: 600;">Excess Energy</p>
+      <p style="margin: 0;"><a href="https://excessenergy.app">excessenergy.app</a></p>
     </div>
   </div>
 </body>
@@ -120,7 +120,7 @@ export const EMAIL_TEMPLATES = {
   welcome: {
     id: "welcome",
     name: "Automated Welcome Email",
-    subject: "Welcome to Excess Energy! ⚡ (Message from Temy)",
+    subject: "Welcome to Excess Energy",
     body: `<h2>Hello and welcome!</h2>
 <p>I'm <strong>Temy</strong> from Excess Energy, and I'm really excited you decided to connect with us.</p>
 <p>Whether you're tired of erratic power outages, rising fuel and electricity costs, or simply looking to upgrade to a dependable solar setup, we are here to guide you every step of the way.</p>

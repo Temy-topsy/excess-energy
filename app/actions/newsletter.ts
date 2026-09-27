@@ -1,7 +1,8 @@
 "use server";
 
 import { getAdminSupabase } from "@/lib/cms/supabase";
-import { sendEmail, EMAIL_TEMPLATES } from "@/lib/mailer/email";
+import { sendEmail } from "@/lib/mailer/email";
+import { EMAIL_TEMPLATES } from "@/lib/mailer/templates";
 
 export async function subscribeNewsletterAction(prevState: any, formData: FormData) {
   const email = (formData.get("email") as string)?.trim().toLowerCase();
@@ -13,17 +14,36 @@ export async function subscribeNewsletterAction(prevState: any, formData: FormDa
   try {
     const adminSupabase = getAdminSupabase();
 
-    // 1. Save or update subscriber in Supabase
-    const { error: dbError } = await adminSupabase
+    // 1. Check if already subscribed (anti-duplicate)
+    const { data: existing, error: checkError } = await adminSupabase
       .from("newsletter_subscribers")
-      .upsert({ email, status: "active" }, { onConflict: "email" });
+      .select("id, status")
+      .eq("email", email)
+      .maybeSingle();
 
-    if (dbError) {
-      console.warn("Supabase newsletter insertion warning:", dbError.message);
-      // Even if table doesn't exist yet or has an error, we still attempt the welcome email
+    if (existing) {
+      return {
+        success: true,
+        alreadySubscribed: true,
+        message: "You're already on the list! We'll keep you updated with our latest offers and solar tips.",
+      };
     }
 
-    // 2. Send Automated Welcome Email from Temy
+    // 2. Insert new subscriber
+    const { error: insertError } = await adminSupabase
+      .from("newsletter_subscribers")
+      .insert({ email, status: "active" });
+
+    if (insertError && insertError.code === "23505") {
+      // Postgres unique constraint violation
+      return {
+        success: true,
+        alreadySubscribed: true,
+        message: "You're already on the list! We'll keep you updated with our latest offers and solar tips.",
+      };
+    }
+
+    // 3. Send Automated Welcome Email
     try {
       await sendEmail({
         to: email,
@@ -31,17 +51,12 @@ export async function subscribeNewsletterAction(prevState: any, formData: FormDa
         html: EMAIL_TEMPLATES.welcome.body,
       });
     } catch (mailError: any) {
-      console.error("Failed to send welcome email:", mailError?.message || mailError);
-      // Return friendly note if email SMTP fails
-      return {
-        success: true,
-        message: "You're subscribed! (Welcome email will arrive shortly once mailer connects).",
-      };
+      console.error("Welcome email delivery note:", mailError?.message || mailError);
     }
 
     return {
       success: true,
-      message: "You're subscribed! Check your inbox for a welcome email from Temy ⚡",
+      message: "You're subscribed! You'll receive a confirmation message shortly.",
     };
   } catch (err: any) {
     console.error("Newsletter error:", err);

@@ -5,6 +5,7 @@ import { WhyUs } from "@/components/sections/why-us/why-us";
 import { ServicesGrid } from "@/components/sections/services/services-grid";
 import { FeaturedPackage } from "@/components/sections/services/featured-package";
 import { FeaturedProjects } from "@/components/sections/projects/featured-projects";
+import { NewsletterSection } from "@/components/sections/newsletter-section";
 import { JsonLd } from "@/components/common/json-ld";
 import { buildMetadata } from "@/lib/content/seo";
 import { localBusinessSchema } from "@/lib/content/structured-data";
@@ -32,6 +33,7 @@ export default function Home() {
       <FeaturedPackage />
       <ServicesGrid />
       <FeaturedProjects />
+      <NewsletterSection />
     </>
   );
 }

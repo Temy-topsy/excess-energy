@@ -30,7 +30,7 @@ export function BroadcastComposer({ subscribers, dbError }: BroadcastComposerPro
   const [body, setBody] = useState(EMAIL_TEMPLATES.welcome.body);
   const [activeTab, setActiveTab] = useState<"edit" | "preview">("edit");
   const [targetMode, setTargetMode] = useState<"test" | "all">("test");
-  const [testEmail, setTestEmail] = useState("info.excessenergy@gmail.com");
+  const [testEmail, setTestEmail] = useState("info.xsenergy1@gmail.com");
 
   const [state, formAction, isPending] = useActionState(sendBroadcastAction, null);
 
@@ -208,7 +208,7 @@ export function BroadcastComposer({ subscribers, dbError }: BroadcastComposerPro
                         dangerouslySetInnerHTML={{ __html: body }}
                       />
                       <div className="border-t border-border mt-6 pt-3 text-center text-[10px] text-muted-foreground">
-                        Sent with ⚡ by <strong>{DEFAULT_SENDER_NAME}</strong>
+                        <strong>Excess Energy</strong> · excessenergy.app
                       </div>
                     </div>
                   </div>
