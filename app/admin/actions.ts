@@ -17,15 +17,26 @@ export async function loginAction(prevState: any, formData: FormData) {
       maxAge: 60 * 60 * 24 * 7, // 1 week
       path: "/",
     });
+    cookieStore.set("admin-last-active", Date.now().toString(), {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 24 * 7,
+      path: "/",
+      sameSite: "lax",
+    });
     redirect("/admin/packages");
   }
 
   return { error: "Invalid password" };
 }
 
-export async function logoutAction() {
+export async function logoutAction(arg?: FormData | string) {
   const cookieStore = await cookies();
   cookieStore.delete("admin-token");
+  cookieStore.delete("admin-last-active");
+  if (typeof arg === "string" && arg) {
+    redirect(`/admin/login?reason=${encodeURIComponent(arg)}`);
+  }
   redirect("/admin/login");
 }
 
