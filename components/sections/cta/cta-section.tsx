@@ -16,17 +16,31 @@ import { primaryCta, secondaryCta } from "@/lib/content/nav";
  * On the dark surface the primary action keeps its yellow fill while the
  * secondary reads as a quiet outline, so one action clearly leads.
  */
+interface CtaSectionProps {
+  heading: React.ReactNode;
+  lead?: React.ReactNode;
+  headingId?: string;
+  className?: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  primaryExternal?: boolean;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  children?: React.ReactNode;
+}
+
 function CtaSection({
   heading,
   lead,
   headingId = "cta-heading",
   className,
-}: {
-  heading: React.ReactNode;
-  lead?: React.ReactNode;
-  headingId?: string;
-  className?: string;
-}) {
+  primaryHref = primaryCta.href,
+  primaryLabel = primaryCta.label,
+  primaryExternal = false,
+  secondaryHref = secondaryCta.href,
+  secondaryLabel = secondaryCta.label,
+  children,
+}: CtaSectionProps) {
   return (
     <Section tone="dark" aria-labelledby={headingId} className={className}>
       <Container className="flex flex-col items-center gap-8">
@@ -41,20 +55,36 @@ function CtaSection({
           ) : null}
         </div>
 
-        <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
-          <Button asChild size="lg" className="w-full sm:w-auto">
-            <Link href={primaryCta.href}>
-              {primaryCta.label}
-              <ArrowRight
-                className="transition-transform duration-[var(--duration-base)] ease-[var(--ease-standard)] group-hover/button:translate-x-0.5"
-                aria-hidden="true"
-              />
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-            <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
-          </Button>
-        </div>
+        {children ? (
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
+            {children}
+          </div>
+        ) : (
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
+            <Button asChild size="lg" className="w-full sm:w-auto">
+              {primaryExternal ? (
+                <a href={primaryHref} target="_blank" rel="noopener noreferrer">
+                  {primaryLabel}
+                  <ArrowRight
+                    className="transition-transform duration-[var(--duration-base)] ease-[var(--ease-standard)] group-hover/button:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </a>
+              ) : (
+                <Link href={primaryHref}>
+                  {primaryLabel}
+                  <ArrowRight
+                    className="transition-transform duration-[var(--duration-base)] ease-[var(--ease-standard)] group-hover/button:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </Link>
+              )}
+            </Button>
+            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+              <Link href={secondaryHref}>{secondaryLabel}</Link>
+            </Button>
+          </div>
+        )}
       </Container>
     </Section>
   );

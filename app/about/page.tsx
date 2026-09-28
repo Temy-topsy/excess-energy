@@ -54,6 +54,7 @@ export default function AboutPage() {
         heading="Ready to start your energy project?"
         lead="Tell us about your home or business and we will begin with a free energy assessment."
         headingId="about-cta-heading"
+        primaryHref="/services"
       />
     </>
   );

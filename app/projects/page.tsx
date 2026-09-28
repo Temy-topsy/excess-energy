@@ -53,6 +53,7 @@ export default function ProjectsPage() {
         heading="Have a project in mind?"
         lead="Start with a free energy assessment and we will design a system built around your needs."
         headingId="projects-cta-heading"
+        primaryHref="/services"
       />
     </>
   );

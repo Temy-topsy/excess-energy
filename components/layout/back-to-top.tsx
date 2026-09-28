@@ -26,18 +26,33 @@ function BackToTop({ className }: BackToTopProps) {
   const pathname = usePathname();
 
   useEffect(() => {
-    const hero = document.querySelector<HTMLElement>(
-      "[data-hero], #main-content > :first-child",
-    );
-    if (!hero) return;
+    setIsVisible(false);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(!entry.isIntersecting),
-      { threshold: 0 },
-    );
+    const hero =
+      document.querySelector<HTMLElement>("[data-hero]") ||
+      document.querySelector<HTMLElement>("#main-content > section:first-of-type");
 
-    observer.observe(hero);
-    return () => observer.disconnect();
+    if (hero) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          const isPastHero =
+            !entry.isIntersecting && entry.boundingClientRect.bottom <= 0;
+          setIsVisible(isPastHero);
+        },
+        { threshold: 0 },
+      );
+
+      observer.observe(hero);
+      return () => observer.disconnect();
+    }
+
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [pathname]);
 
   function scrollToTop() {

@@ -50,7 +50,7 @@ export function AdminHeader() {
 
       <div className="flex items-center gap-3">
         <Button asChild variant="ghost" size="sm">
-          <Link href="/" target="_blank" className="flex items-center gap-1.5 text-muted-foreground">
+          <Link href="/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-muted-foreground">
             <ExternalLink className="h-3.5 w-3.5" />
             <span>View Site</span>
           </Link>

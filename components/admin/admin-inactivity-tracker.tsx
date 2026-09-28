@@ -20,22 +20,24 @@ export function AdminInactivityTracker() {
   const lastCookieUpdateRef = useRef<number>(Date.now());
   const isLoggingOutRef = useRef<boolean>(false);
 
-  const performLogout = useCallback(async () => {
+  const performLogout = useCallback(async (reason: string = "inactivity") => {
     if (isLoggingOutRef.current) return;
     isLoggingOutRef.current = true;
 
     try {
+      sessionStorage.removeItem("admin_session_active");
       localStorage.removeItem("admin_last_active");
       document.cookie = "admin-last-active=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
       document.cookie = "admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie = "admin-session-init=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
     } catch {
       // ignore
     }
 
     try {
-      await logoutAction("inactivity");
+      await logoutAction(reason);
     } catch {
-      window.location.href = "/admin/login?reason=inactivity";
+      window.location.href = `/admin/login${reason ? `?reason=${encodeURIComponent(reason)}` : ""}`;
     }
   }, []);
 
@@ -60,13 +62,19 @@ export function AdminInactivityTracker() {
   useEffect(() => {
     if (isLoginPage) return;
 
+    // Check if session is active in this tab
+    if (!sessionStorage.getItem("admin_session_active")) {
+      performLogout("");
+      return;
+    }
+
     // Initialize timestamps on mount
     const now = Date.now();
     lastActivityRef.current = now;
     lastCookieUpdateRef.current = now;
     try {
       localStorage.setItem("admin_last_active", now.toString());
-      document.cookie = `admin-last-active=${now}; path=/; max-age=604800; SameSite=Lax`;
+      document.cookie = `admin-last-active=${now}; path=/; SameSite=Lax`;
     } catch {
       // ignore
     }
@@ -80,6 +88,31 @@ export function AdminInactivityTracker() {
     events.forEach((event) => {
       window.addEventListener(event, handleActivity, { passive: true });
     });
+
+    // Handle clicks that navigate outside /admin in the current tab
+    const handleLinkClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest("a");
+      if (!target) return;
+      const href = target.getAttribute("href");
+      const targetAttr = target.getAttribute("target");
+      if (
+        href &&
+        !href.startsWith("/admin") &&
+        !href.startsWith("#") &&
+        !href.startsWith("mailto:") &&
+        !href.startsWith("tel:") &&
+        targetAttr !== "_blank"
+      ) {
+        try {
+          sessionStorage.removeItem("admin_session_active");
+          document.cookie = "admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+          document.cookie = "admin-last-active=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        } catch {
+          // ignore
+        }
+      }
+    };
+    document.addEventListener("click", handleLinkClick);
 
     // Sync across tabs
     const handleStorage = (e: StorageEvent) => {
@@ -139,6 +172,7 @@ export function AdminInactivityTracker() {
       events.forEach((event) => {
         window.removeEventListener(event, handleActivity);
       });
+      document.removeEventListener("click", handleLinkClick);
       window.removeEventListener("storage", handleStorage);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       clearInterval(interval);

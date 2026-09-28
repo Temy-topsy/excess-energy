@@ -44,6 +44,12 @@ export const company = {
     href: "+2349058360452",
   } satisfies ContactPhone,
 
+  assessment: {
+    label: "Energy Assessment",
+    display: "0905 836 0452",
+    href: "+2349058360452",
+  } satisfies ContactPhone,
+
   /**
    * The WhatsApp business line. Forms and contact buttons open a chat here with
    * a prefilled message. UPDATE this to the real WhatsApp number when it is

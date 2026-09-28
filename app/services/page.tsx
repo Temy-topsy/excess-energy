@@ -48,6 +48,11 @@ export default function ServicesPage() {
         heading="Not sure which service fits?"
         lead="Start with a free energy assessment and we will recommend the right system for your needs."
         headingId="services-cta-heading"
+        primaryHref={`https://wa.me/2349058360452?text=${encodeURIComponent(
+          "Hello Excess Energy, I would like to request a free energy assessment. Here is what I want to power with solar: "
+        )}`}
+        primaryLabel="Request Assessment"
+        primaryExternal
       />
     </>
   );

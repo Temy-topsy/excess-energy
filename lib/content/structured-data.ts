@@ -50,6 +50,13 @@ export function organizationSchema(): JsonLdObject {
       })),
       {
         "@type": "ContactPoint",
+        contactType: "Energy Assessment & Consultation",
+        telephone: company.assessment.href,
+        areaServed: "NG",
+        availableLanguage: ["en"],
+      },
+      {
+        "@type": "ContactPoint",
         contactType: "Emergency",
         telephone: company.emergency.href,
         areaServed: "NG",
@@ -86,6 +93,29 @@ export function localBusinessSchema(): JsonLdObject {
     image: absoluteUrl("/images/logos/logo.png"),
     url: siteConfig.url,
     telephone: primaryPhone,
+    contactPoint: [
+      ...company.phones.map((phone) => ({
+        "@type": "ContactPoint",
+        contactType: phone.label,
+        telephone: phone.href,
+        areaServed: "NG",
+        availableLanguage: ["en"],
+      })),
+      {
+        "@type": "ContactPoint",
+        contactType: "Energy Assessment & Consultation",
+        telephone: company.assessment.href,
+        areaServed: "NG",
+        availableLanguage: ["en"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "Emergency",
+        telephone: company.emergency.href,
+        areaServed: "NG",
+        availableLanguage: ["en"],
+      },
+    ],
     email: company.email,
     priceRange: "$$",
     parentOrganization: { "@id": ORGANIZATION_ID },
