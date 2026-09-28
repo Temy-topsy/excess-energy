@@ -62,12 +62,6 @@ export function AdminInactivityTracker() {
   useEffect(() => {
     if (isLoginPage) return;
 
-    // Check if session is active in this tab
-    if (!sessionStorage.getItem("admin_session_active")) {
-      performLogout("");
-      return;
-    }
-
     // Initialize timestamps on mount
     const now = Date.now();
     lastActivityRef.current = now;

@@ -16,13 +16,6 @@ export async function loginAction(prevState: any, formData: FormData) {
       secure: process.env.NODE_ENV === "production",
       path: "/",
     });
-    cookieStore.set("admin-session-init", "1", {
-      httpOnly: false,
-      secure: process.env.NODE_ENV === "production",
-      path: "/",
-      maxAge: 15,
-      sameSite: "lax",
-    });
     cookieStore.set("admin-last-active", Date.now().toString(), {
       httpOnly: false,
       secure: process.env.NODE_ENV === "production",
@@ -39,7 +32,6 @@ export async function logoutAction(arg?: FormData | string) {
   const cookieStore = await cookies();
   cookieStore.delete("admin-token");
   cookieStore.delete("admin-last-active");
-  cookieStore.delete("admin-session-init");
   if (typeof arg === "string" && arg) {
     redirect(`/admin/login?reason=${encodeURIComponent(arg)}`);
   }
