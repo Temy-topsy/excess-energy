@@ -2,7 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import { Award, Leaf, ShieldCheck, Wallet } from "lucide-react";
 import { serviceDetails } from "./service-details";
 import { supabase } from "@/lib/cms/supabase";
-import { unstable_noStore as noStore } from "next/cache";
+import { unstable_cache } from "next/cache";
 
 export interface PackageBenefit {
   icon: LucideIcon;
@@ -34,34 +34,40 @@ const packageFaq = serviceDetails["excess-solar"].faq;
 export const defaultBenefits = packageBenefits;
 export const defaultFaq = packageFaq;
 
-export async function getSolarPackages(): Promise<SolarPackage[]> {
-  noStore();
-  const { data, error } = await supabase
-    .from("solar_packages")
-    .select("*")
-    .order("name", { ascending: true });
+export const getSolarPackages = unstable_cache(
+  async (): Promise<SolarPackage[]> => {
+    const { data, error } = await supabase
+      .from("solar_packages")
+      .select("*")
+      .order("name", { ascending: true });
 
-  if (error || !data) {
-    console.error("Error fetching packages from Supabase:", error);
-    return [];
+    if (error || !data) {
+      console.error("Error fetching packages from Supabase:", error);
+      return [];
+    }
+
+    return data.map((row) => ({
+      slug: row.slug,
+      name: row.name,
+      href: row.href,
+      packageImage: row.package_image,
+      packageAlt: row.package_alt,
+      inverterImage: row.inverter_image,
+      panelImage: row.panel_image,
+      benefits: packageBenefits,
+      faq: packageFaq,
+      seo: {
+        title: row.seo_title,
+        description: row.seo_description,
+      },
+    }));
+  },
+  ["solar-packages-list"],
+  {
+    tags: ["solar_packages"],
+    revalidate: 3600,
   }
-
-  return data.map((row) => ({
-    slug: row.slug,
-    name: row.name,
-    href: row.href,
-    packageImage: row.package_image,
-    packageAlt: row.package_alt,
-    inverterImage: row.inverter_image,
-    panelImage: row.panel_image,
-    benefits: packageBenefits,
-    faq: packageFaq,
-    seo: {
-      title: row.seo_title,
-      description: row.seo_description,
-    },
-  }));
-}
+);
 
 export async function getSolarPackage(slug: string): Promise<SolarPackage | undefined> {
   const packages = await getSolarPackages();

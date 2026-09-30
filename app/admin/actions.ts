@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getAdminSupabase } from "@/lib/cms/supabase";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 
 export async function loginAction(prevState: any, formData: FormData) {
   const password = formData.get("password");
@@ -60,6 +60,7 @@ export async function updatePackageAction(slug: string, prevState: any, formData
   revalidatePath("/services");
   revalidatePath(`/services/excess-solar/${slug}`);
   revalidatePath("/admin/packages");
+  updateTag("solar_packages");
   
   return { success: true };
 }
@@ -98,6 +99,7 @@ export async function uploadImageAction(slug: string, fieldType: "package_image"
   revalidatePath("/services");
   revalidatePath(`/services/excess-solar/${slug}`);
   revalidatePath("/admin/packages");
+  updateTag("solar_packages");
 
   return { success: true, url: publicUrl };
 }
@@ -130,6 +132,7 @@ export async function createPackageAction(prevState: any, formData: FormData) {
   revalidatePath("/");
   revalidatePath("/services");
   revalidatePath("/admin/packages");
+  updateTag("solar_packages");
   
   redirect(`/admin/packages/${newPackage.slug}`);
 }
@@ -143,6 +146,7 @@ export async function deletePackageAction(slug: string) {
   revalidatePath("/");
   revalidatePath("/services");
   revalidatePath("/admin/packages");
+  updateTag("solar_packages");
 
   return { success: true };
 }

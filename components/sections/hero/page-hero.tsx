@@ -50,6 +50,7 @@ export function PageHero({ heading, description, mobileImage, desktopImage, imag
           <img
             srcSet={mobileSrcSet}
             {...mobileRest}
+            fetchPriority="high"
             className="h-full w-full object-cover object-center"
           />
         </picture>
