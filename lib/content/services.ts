@@ -3,12 +3,10 @@ import {
   Building2,
   Cctv,
   Gauge,
-  HousePlug,
   CarFront,
   Factory,
   LampCeiling,
   Plug,
-  ShieldCheck,
   Sun,
 } from "lucide-react";
 

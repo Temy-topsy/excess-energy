@@ -34,8 +34,8 @@ const packageFaq = serviceDetails["excess-solar"].faq;
 export const defaultBenefits = packageBenefits;
 export const defaultFaq = packageFaq;
 
-export const getSolarPackages = unstable_cache(
-  async (): Promise<SolarPackage[]> => {
+const getCachedSolarPackageRows = unstable_cache(
+  async () => {
     const { data, error } = await supabase
       .from("solar_packages")
       .select("*")
@@ -46,21 +46,7 @@ export const getSolarPackages = unstable_cache(
       return [];
     }
 
-    return data.map((row) => ({
-      slug: row.slug,
-      name: row.name,
-      href: row.href,
-      packageImage: row.package_image,
-      packageAlt: row.package_alt,
-      inverterImage: row.inverter_image,
-      panelImage: row.panel_image,
-      benefits: packageBenefits,
-      faq: packageFaq,
-      seo: {
-        title: row.seo_title,
-        description: row.seo_description,
-      },
-    }));
+    return data;
   },
   ["solar-packages-list"],
   {
@@ -68,6 +54,25 @@ export const getSolarPackages = unstable_cache(
     revalidate: 3600,
   }
 );
+
+export async function getSolarPackages(): Promise<SolarPackage[]> {
+  const rows = await getCachedSolarPackageRows();
+  return rows.map((row) => ({
+    slug: row.slug,
+    name: row.name,
+    href: row.href,
+    packageImage: row.package_image,
+    packageAlt: row.package_alt,
+    inverterImage: row.inverter_image,
+    panelImage: row.panel_image,
+    benefits: packageBenefits,
+    faq: packageFaq,
+    seo: {
+      title: row.seo_title,
+      description: row.seo_description,
+    },
+  }));
+}
 
 export async function getSolarPackage(slug: string): Promise<SolarPackage | undefined> {
   const packages = await getSolarPackages();

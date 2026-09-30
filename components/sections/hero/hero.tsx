@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { Route } from "next";
-import Image from "next/image";
+import { getImageProps } from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import gsap from "gsap";
@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { hero } from "@/lib/content/hero";
 import { primaryCta, secondaryCta } from "@/lib/content/nav";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
-import { getImageProps } from "next/image";
 
 /**
  * The redesigned homepage hero. Uses a full viewport background image with
@@ -46,8 +45,8 @@ function Hero() {
   );
 
   const commonProps = { alt: hero.media.alt, fill: true, priority: true, sizes: "100vw", placeholder: "blur" as const };
-  const { props: { srcSet: desktopSrcSet, ...desktopRest } } = getImageProps({ ...commonProps, src: hero.media.desktopSrc });
-  const { props: { srcSet: mobileSrcSet, ...mobileRest } } = getImageProps({ ...commonProps, src: hero.media.mobileSrc });
+  const { props: { srcSet: desktopSrcSet } } = getImageProps({ ...commonProps, src: hero.media.desktopSrc });
+  const { props: { srcSet: mobileSrcSet, alt, ...mobileRest } } = getImageProps({ ...commonProps, src: hero.media.mobileSrc });
 
   return (
     <section
@@ -61,6 +60,7 @@ function Hero() {
         <picture>
           <source media="(min-width: 640px)" srcSet={desktopSrcSet} />
           <img
+            alt={alt}
             srcSet={mobileSrcSet}
             {...mobileRest}
             fetchPriority="high"

@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useActionState, useTransition } from "react";
+import { useState, useActionState } from "react";
 import {
   Send,
-  Sparkles,
   CheckCircle2,
   AlertCircle,
   Loader2,

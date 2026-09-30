@@ -24,12 +24,12 @@ export async function getSubscribers(): Promise<{ subscribers: Subscriber[]; err
     }
 
     return { subscribers: (data as Subscriber[]) || [] };
-  } catch (err: any) {
-    return { subscribers: [], error: err.message };
+  } catch (err: unknown) {
+    return { subscribers: [], error: (err as Error)?.message || "Failed to load subscribers" };
   }
 }
 
-export async function sendBroadcastAction(prevState: any, formData: FormData) {
+export async function sendBroadcastAction(_prevState: unknown, formData: FormData) {
   const subject = (formData.get("subject") as string)?.trim();
   const messageHtml = (formData.get("body") as string)?.trim();
   const target = formData.get("target") as "test" | "all";
@@ -88,8 +88,8 @@ export async function sendBroadcastAction(prevState: any, formData: FormData) {
           html: messageHtml,
         });
         sentCount++;
-      } catch (err: any) {
-        console.error(`Failed to send to ${recipient}:`, err?.message);
+      } catch (err: unknown) {
+        console.error(`Failed to send to ${recipient}:`, (err as Error)?.message);
         errors.push(recipient);
       }
     }
@@ -102,10 +102,10 @@ export async function sendBroadcastAction(prevState: any, formData: FormData) {
         errors.length > 0 ? ` (${errors.length} failed)` : ""
       }`,
     };
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("Broadcast send error:", err);
     return {
-      error: `Mailer error: ${err?.message || "Failed to send email. Check credentials."}`,
+      error: `Mailer error: ${(err as Error)?.message || "Failed to send email. Check credentials."}`,
     };
   }
 }

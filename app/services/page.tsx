@@ -4,6 +4,7 @@ import { buildMetadata } from "@/lib/content/seo";
 import { JsonLd } from "@/components/common/json-ld";
 import { breadcrumbSchema } from "@/lib/content/structured-data";
 import { PackagesGrid } from "@/components/sections/services/packages-grid";
+import { NewsletterSection } from "@/components/sections/newsletter-section";
 import { CtaSection } from "@/components/sections/cta/cta-section";
 import { PageHero } from "@/components/sections/hero/page-hero";
 import servicesHeroDesktop from "@/public/images/hero/services-hero-desktop.jpg";
@@ -44,6 +45,7 @@ export default function ServicesPage() {
         imageAlt="Excess Energy Services"
       />
       <PackagesGrid />
+      <NewsletterSection />
       <CtaSection
         heading="Not sure which service fits?"
         lead="Start with a free energy assessment and we will recommend the right system for your needs."

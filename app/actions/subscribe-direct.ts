@@ -4,8 +4,13 @@ import { getAdminSupabase } from "@/lib/cms/supabase";
 import { sendEmail } from "@/lib/mailer/email";
 import { EMAIL_TEMPLATES } from "@/lib/mailer/templates";
 
-export async function subscribeNewsletterAction(_prevState: unknown, formData: FormData) {
-  const email = (formData.get("email") as string)?.trim().toLowerCase();
+/**
+ * Subscribe an email address directly (e.g. from lead forms that don't use
+ * useActionState). Fire-and-forget safe — callers can void the result when
+ * they don't need to surface errors to the UI.
+ */
+export async function subscribeEmailDirect(rawEmail: string) {
+  const email = rawEmail?.trim().toLowerCase();
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { error: "Please enter a valid email address." };
@@ -14,7 +19,7 @@ export async function subscribeNewsletterAction(_prevState: unknown, formData: F
   try {
     const adminSupabase = getAdminSupabase();
 
-    // 1. Check if already subscribed (anti-duplicate)
+    // Check if already subscribed (anti-duplicate)
     const { data: existing } = await adminSupabase
       .from("newsletter_subscribers")
       .select("id, status")
@@ -25,25 +30,24 @@ export async function subscribeNewsletterAction(_prevState: unknown, formData: F
       return {
         success: true,
         alreadySubscribed: true,
-        message: "You're already on the list! We'll keep you updated with our latest offers and solar tips.",
       };
     }
 
-    // 2. Insert new subscriber
+    // Insert new subscriber
     const { error: insertError } = await adminSupabase
       .from("newsletter_subscribers")
       .insert({ email, status: "active" });
 
     if (insertError && insertError.code === "23505") {
-      // Postgres unique constraint violation
-      return {
-        success: true,
-        alreadySubscribed: true,
-        message: "You're already on the list! We'll keep you updated with our latest offers and solar tips.",
-      };
+      return { success: true, alreadySubscribed: true };
     }
 
-    // 3. Send Automated Welcome Email
+    if (insertError) {
+      console.error("Newsletter insert error:", insertError.message);
+      return { error: "Something went wrong. Please try again later." };
+    }
+
+    // Send welcome email — best effort, never throws
     try {
       await sendEmail({
         to: email,
@@ -54,10 +58,7 @@ export async function subscribeNewsletterAction(_prevState: unknown, formData: F
       console.error("Welcome email delivery note:", (mailError as Error)?.message || mailError);
     }
 
-    return {
-      success: true,
-      message: "You're subscribed! You'll receive a confirmation message shortly.",
-    };
+    return { success: true };
   } catch (err: unknown) {
     console.error("Newsletter error:", err);
     return { error: "Something went wrong. Please try again later." };

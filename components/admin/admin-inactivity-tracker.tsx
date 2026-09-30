@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { logoutAction } from "@/app/admin/actions";
@@ -10,14 +10,15 @@ const INACTIVITY_TIMEOUT_MS = 60 * 1000; // 1 minute
 const WARNING_THRESHOLD_SECONDS = 15;
 
 export function AdminInactivityTracker() {
+  const router = useRouter();
   const pathname = usePathname();
   const isLoginPage = pathname === "/admin/login";
 
   const [secondsRemaining, setSecondsRemaining] = useState(60);
   const [showWarning, setShowWarning] = useState(false);
 
-  const lastActivityRef = useRef<number>(Date.now());
-  const lastCookieUpdateRef = useRef<number>(Date.now());
+  const lastActivityRef = useRef<number>(0);
+  const lastCookieUpdateRef = useRef<number>(0);
   const isLoggingOutRef = useRef<boolean>(false);
 
   const performLogout = useCallback(async (reason: string = "inactivity") => {
@@ -37,9 +38,9 @@ export function AdminInactivityTracker() {
     try {
       await logoutAction(reason);
     } catch {
-      window.location.href = `/admin/login${reason ? `?reason=${encodeURIComponent(reason)}` : ""}`;
+      router.push(`/admin/login${reason ? `?reason=${encodeURIComponent(reason)}` : ""}`);
     }
-  }, []);
+  }, [router]);
 
   const resetTimer = useCallback(() => {
     const now = Date.now();

@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 
 export default function NewPackagePage() {
-  const [state, formAction, isPending] = useActionState<{error?: string} | null, FormData>(createPackageAction as any, null);
+  const [state, formAction, isPending] = useActionState(createPackageAction, null);
 
   return (
     <div className="space-y-8 max-w-2xl mx-auto">

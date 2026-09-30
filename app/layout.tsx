@@ -9,6 +9,8 @@ import { BackToTop } from "@/components/layout/back-to-top";
 import { WhatsAppButton } from "@/components/common/whatsapp-button";
 import { JsonLd } from "@/components/common/json-ld";
 import { buildMetadata, siteConfig } from "@/lib/content/seo";
+import { Preloader } from "@/components/layout/preloader";
+import { ExitIntentModal } from "@/components/common/exit-intent-modal";
 import {
   organizationSchema,
   websiteSchema,
@@ -74,7 +76,11 @@ export const viewport: Viewport = {
   colorScheme: "light dark",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
@@ -89,6 +95,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           enableSystem
           disableTransitionOnChange
         >
+          <Preloader />
           <SkipLink />
           <SiteHeader />
           <main id="main-content" className="flex-1">
@@ -97,6 +104,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SiteFooter />
           <BackToTop />
           <WhatsAppButton />
+          <ExitIntentModal />
         </ThemeProvider>
       </body>
     </html>

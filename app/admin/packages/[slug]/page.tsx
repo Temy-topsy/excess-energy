@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getSolarPackage } from "@/lib/content/packages";
+import { getSolarPackage, type SolarPackage } from "@/lib/content/packages";
 import { EditPackageForm } from "./edit-package-form";
 
 export default async function AdminEditPackagePage({
@@ -14,11 +14,11 @@ export default async function AdminEditPackagePage({
     notFound();
   }
 
-  const safePkg = {
+  const safePkg: SolarPackage = {
     ...pkg,
-    benefits: [], // Remove non-serializable React functions
+    benefits: [],
     faq: [],
   };
 
-  return <EditPackageForm pkg={safePkg as any} />;
+  return <EditPackageForm pkg={safePkg} />;
 }

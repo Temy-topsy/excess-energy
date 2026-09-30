@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useSyncExternalStore } from "react";
 import { loginAction } from "@/app/admin/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,16 +8,14 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Clock } from "lucide-react";
 
-export default function AdminLoginPage() {
-  const [state, formAction, isPending] = useActionState<{error?: string} | null, FormData>(loginAction as any, null);
-  const [isTimeout, setIsTimeout] = useState(false);
+const subscribe = () => () => {};
+const getTimeoutSnapshot = () =>
+  typeof window !== "undefined" && new URLSearchParams(window.location.search).get("reason") === "inactivity";
+const getServerSnapshot = () => false;
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("reason") === "inactivity") {
-      setIsTimeout(true);
-    }
-  }, []);
+export default function AdminLoginPage() {
+  const [state, formAction, isPending] = useActionState(loginAction, null);
+  const isTimeout = useSyncExternalStore(subscribe, getTimeoutSnapshot, getServerSnapshot);
 
   return (
     <div className="flex items-center justify-center min-h-[60vh]">

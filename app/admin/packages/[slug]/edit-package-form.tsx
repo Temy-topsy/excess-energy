@@ -14,7 +14,7 @@ import Image from "next/image";
 
 export function EditPackageForm({ pkg }: { pkg: SolarPackage }) {
   const updateWithSlug = updatePackageAction.bind(null, pkg.slug);
-  const [updateState, formAction, isPending] = useActionState<{error?: string; success?: boolean} | null, FormData>(updateWithSlug as any, null);
+  const [updateState, formAction, isPending] = useActionState(updateWithSlug, null);
 
   const [uploadingImage, setUploadingImage] = useState<string | null>(null);
 

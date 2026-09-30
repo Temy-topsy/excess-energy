@@ -2,7 +2,6 @@ import { MapPin } from "lucide-react";
 
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
-import { Grid } from "@/components/layout/grid";
 import { Card } from "@/components/ui/card";
 import { SectionHeading } from "@/components/common/section-heading";
 import { company } from "@/lib/content/company";

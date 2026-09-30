@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Send, TriangleAlert } from "lucide-react";
+import { Send, TriangleAlert, Zap } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +20,7 @@ import {
   TextField,
   TextareaField,
 } from "@/components/forms/fields";
+import { subscribeEmailDirect } from "@/app/actions/subscribe-direct";
 
 /**
  * The contact form. Collects only what an assessment needs (name, phone,
@@ -26,9 +28,14 @@ import {
  * result to WhatsApp through the shared lead hook. Once sent, the whole form is
  * replaced by the confirmation panel, which doubles as the guard against a
  * duplicate submission since the inputs are gone.
+ *
+ * A soft newsletter opt-in sits above the submit button — checking it reveals a
+ * small email field so the user can subscribe without any extra steps.
  */
 function ContactForm() {
   const { status, whatsappUrl, submit, reset } = useLeadForm<ContactValues>();
+  const [wantsNewsletter, setWantsNewsletter] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
 
   const form = useForm<ContactInput, unknown, ContactValues>({
     resolver: zodResolver(contactSchema),
@@ -42,9 +49,13 @@ function ContactForm() {
     },
   });
 
-  const onSubmit = form.handleSubmit((values) =>
-    submit(values, contactWhatsappUrl),
-  );
+  const onSubmit = form.handleSubmit(async (values) => {
+    // Fire newsletter subscribe silently in the background — best effort, no UX block
+    if (wantsNewsletter && newsletterEmail.trim()) {
+      void subscribeEmailDirect(newsletterEmail.trim());
+    }
+    submit(values, contactWhatsappUrl);
+  });
 
   if (status === "success") {
     return <LeadSuccess whatsappUrl={whatsappUrl} onReset={reset} />;
@@ -82,6 +93,51 @@ function ContactForm() {
         />
 
         <HoneypotField />
+
+        {/* Soft newsletter opt-in — unchecked by default, zero-friction */}
+        <div className="rounded-md border border-border bg-muted/40 p-4 space-y-3">
+          <label
+            htmlFor="contact-newsletter-optin"
+            className="flex cursor-pointer items-start gap-3"
+          >
+            <input
+              id="contact-newsletter-optin"
+              type="checkbox"
+              checked={wantsNewsletter}
+              onChange={(e) => setWantsNewsletter(e.target.checked)}
+              className="mt-0.5 size-4 shrink-0 cursor-pointer accent-[#ffc107]"
+            />
+            <span className="flex flex-col gap-0.5">
+              <span className="flex items-center gap-1.5 text-body-sm font-medium text-foreground">
+                Also send me solar tips &amp; package updates
+              </span>
+              <span className="text-xs text-muted-foreground leading-relaxed">
+                Practical guides and early-access offers. Unsubscribe any time.
+              </span>
+            </span>
+          </label>
+
+          {/* Slide-in email field — only visible when opted in */}
+          {wantsNewsletter && (
+            <div className="pt-1 animate-in slide-in-from-top-2 duration-200">
+              <label
+                htmlFor="contact-newsletter-email"
+                className="mb-1.5 block text-xs font-medium text-muted-foreground"
+              >
+                Email address for updates
+              </label>
+              <input
+                id="contact-newsletter-email"
+                type="email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                placeholder="you@example.com"
+                autoComplete="email"
+                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              />
+            </div>
+          )}
+        </div>
 
         {status === "error" ? (
           <p

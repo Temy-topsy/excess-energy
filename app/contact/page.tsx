@@ -11,7 +11,6 @@ import { ContactMethods } from "@/components/sections/contact/contact-methods";
 import { ContactFormSection } from "@/components/sections/contact/contact-form-section";
 import { ServiceAreas } from "@/components/sections/contact/service-areas";
 import { ContactFaq } from "@/components/sections/contact/contact-faq";
-import { CtaSection } from "@/components/sections/cta/cta-section";
 import contactHeroDesktop from "@/public/images/hero/contact-hero-desktop.jpg";
 import contactHeroMobile from "@/public/images/hero/contact-hero-mobile.jpg";
 

@@ -1,29 +1,25 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useSyncExternalStore } from "react";
 import { Check, AlertCircle, Loader2 } from "lucide-react";
 import { subscribeNewsletterAction } from "@/app/actions/newsletter";
 import { Button } from "@/components/ui/button";
 
+const subscribe = () => () => {};
+const getSnapshot = () =>
+  typeof window !== "undefined" && Boolean(localStorage.getItem("excess_newsletter_subscribed"));
+const getServerSnapshot = () => false;
+
 export function NewsletterBox() {
   const [state, formAction, isPending] = useActionState(subscribeNewsletterAction, null);
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const isPreviouslySubscribed = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const isSubscribed = isPreviouslySubscribed || Boolean(state?.success);
 
   useEffect(() => {
-    // Check if user previously subscribed in this browser
-    if (typeof window !== "undefined" && localStorage.getItem("excess_newsletter_subscribed")) {
-      setIsSubscribed(true);
+    if (state?.success && typeof window !== "undefined") {
+      localStorage.setItem("excess_newsletter_subscribed", "true");
     }
-  }, []);
-
-  useEffect(() => {
-    if (state?.success) {
-      setIsSubscribed(true);
-      if (typeof window !== "undefined") {
-        localStorage.setItem("excess_newsletter_subscribed", "true");
-      }
-    }
-  }, [state]);
+  }, [state?.success]);
 
   // If already subscribed, replace the ENTIRE screen with the clean confirmation and big tick
   if (isSubscribed) {

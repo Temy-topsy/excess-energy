@@ -24,10 +24,14 @@ interface BackToTopProps {
 function BackToTop({ className }: BackToTopProps) {
   const [isVisible, setIsVisible] = useState(false);
   const pathname = usePathname();
+  const [prevPathname, setPrevPathname] = useState(pathname);
+
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setIsVisible(false);
+  }
 
   useEffect(() => {
-    setIsVisible(false);
-
     const hero =
       document.querySelector<HTMLElement>("[data-hero]") ||
       document.querySelector<HTMLElement>("#main-content > section:first-of-type");

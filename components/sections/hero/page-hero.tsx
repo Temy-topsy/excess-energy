@@ -1,11 +1,10 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import { getImageProps, type StaticImageData } from "next/image";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
-import { getImageProps } from "next/image";
 
 interface PageHeroProps {
   heading: string;
@@ -34,8 +33,8 @@ export function PageHero({ heading, description, mobileImage, desktopImage, imag
   );
 
   const commonProps = { alt: imageAlt, fill: true, priority: true, sizes: "100vw", placeholder: "blur" as const };
-  const { props: { srcSet: desktopSrcSet, ...desktopRest } } = getImageProps({ ...commonProps, src: desktopImage });
-  const { props: { srcSet: mobileSrcSet, ...mobileRest } } = getImageProps({ ...commonProps, src: mobileImage });
+  const { props: { srcSet: desktopSrcSet } } = getImageProps({ ...commonProps, src: desktopImage });
+  const { props: { srcSet: mobileSrcSet, alt, ...mobileRest } } = getImageProps({ ...commonProps, src: mobileImage });
 
   return (
     <section
@@ -48,6 +47,7 @@ export function PageHero({ heading, description, mobileImage, desktopImage, imag
         <picture>
           <source media="(min-width: 640px)" srcSet={desktopSrcSet} />
           <img
+            alt={alt}
             srcSet={mobileSrcSet}
             {...mobileRest}
             fetchPriority="high"

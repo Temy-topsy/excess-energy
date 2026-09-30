@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { getAdminSupabase } from "@/lib/cms/supabase";
 import { revalidatePath, updateTag } from "next/cache";
 
-export async function loginAction(prevState: any, formData: FormData) {
+export async function loginAction(_prevState: unknown, formData: FormData) {
   const password = formData.get("password");
   const validPassword = process.env.ADMIN_DASHBOARD_PASSWORD;
 
@@ -38,7 +38,7 @@ export async function logoutAction(arg?: FormData | string) {
   redirect("/admin/login");
 }
 
-export async function updatePackageAction(slug: string, prevState: any, formData: FormData) {
+export async function updatePackageAction(slug: string, _prevState: unknown, formData: FormData) {
   const adminSupabase = getAdminSupabase();
   
   const updates = {
@@ -104,7 +104,7 @@ export async function uploadImageAction(slug: string, fieldType: "package_image"
   return { success: true, url: publicUrl };
 }
 
-export async function createPackageAction(prevState: any, formData: FormData) {
+export async function createPackageAction(_prevState: unknown, formData: FormData) {
   const adminSupabase = getAdminSupabase();
   const name = formData.get("name") as string;
   const slug = formData.get("slug") as string;

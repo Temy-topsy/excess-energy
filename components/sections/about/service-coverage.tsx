@@ -1,4 +1,4 @@
-import { MapPin, Globe } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
