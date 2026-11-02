@@ -64,6 +64,7 @@ export async function sendEmail({
   html: string;
   text?: string;
 }) {
+  const user = process.env.EMAIL_USER || "info.xsenergy1@gmail.com";
   const transporter = getTransporter();
   const recipients = Array.isArray(to) ? to.join(", ") : to;
   const cleanSubject = subject.trim();
@@ -73,11 +74,14 @@ export async function sendEmail({
   const mailOptions = {
     from: DEFAULT_FROM,
     to: recipients,
+    replyTo: DEFAULT_FROM,
     subject: cleanSubject,
     html: fullHtml,
     text: plainText,
     headers: {
       "X-Entity-Ref-ID": `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+      "Precedence": "bulk",
+      "List-Unsubscribe": `<mailto:${user}?subject=Unsubscribe>`,
     },
   };
 
