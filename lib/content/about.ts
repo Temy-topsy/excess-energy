@@ -155,3 +155,46 @@ export const whyExcess: AboutFeature[] = [
     description: "Projects available beyond our core regions, on request.",
   },
 ];
+
+export interface Founder {
+  name: string;
+  role: string;
+  email: string;
+  bio: string[];
+}
+
+export const foundersSection = {
+  overline: "The Founders",
+  heading: "Built on shared vision and engineering discipline.",
+  lead:
+    "Excess Energy was founded by Paul I. Obuseh and Quadri O. Sanusi, brought together by a shared vision to build a trusted energy company providing reliable, practical, and professionally delivered power solutions for homes, businesses, and institutions.",
+  founders: [
+    {
+      name: "Paul I. Obuseh",
+      role: "Co-Founder & Chief Executive Officer",
+      email: "paul@excessenergy.app",
+      bio: [
+        "Paul is the Lead Founder and Chief Executive Officer of Excess Energy, with hands-on experience across solar power, system design, installation, maintenance, and energy solutions.",
+        "He leads the company’s overall direction, operations, and technical development, ensuring that every solution delivered by Excess Energy meets a high standard of quality, reliability, and practicality.",
+        "Paul is passionate about solving everyday power challenges through dependable energy systems and building Excess Energy into a trusted energy company known for quality workmanship, professional service, and long-term customer support.",
+      ],
+    },
+    {
+      name: "Quadri O. Sanusi",
+      role: "Co-Founder & Chief Operating Officer",
+      email: "quadri@excessenergy.app",
+      bio: [
+        "Quadri is the Co-Founder and Chief Operating Officer of Excess Energy, contributing to the company’s business development, partnerships, marketing, brand direction, customer acquisition, and growth strategy.",
+        "He focuses on connecting the company’s solutions with the people and organizations that need them, while helping build the systems, relationships, and business operations needed for Excess Energy to grow sustainably.",
+        "Together with Paul, he is committed to building a company that combines quality energy solutions with excellent customer experience, professional service, and a strong long-term vision.",
+      ],
+    },
+  ] satisfies Founder[],
+  vision: {
+    quote: "We believe reliable power should be the standard, not a luxury.",
+    body:
+      "Excess Energy was built to go beyond simply supplying energy equipment. Our goal is to deliver dependable energy solutions that help homes, businesses, and institutions stay powered, productive, and prepared. We are building for the long term, with a commitment to quality, reliability, innovation, and customer trust.",
+    motto: "One company. One vision. Power Beyond Limits.",
+  },
+} as const;
+

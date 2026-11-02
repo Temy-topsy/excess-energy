@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { PageHero } from "@/components/sections/hero/page-hero";
 import { CompanyStory } from "@/components/sections/about/company-story";
+import { TheFounders } from "@/components/sections/about/the-founders";
 import { MissionVision } from "@/components/sections/about/mission-vision";
 import { CoreValues } from "@/components/sections/about/core-values";
 import { WhyExcess } from "@/components/sections/about/why-excess";
@@ -46,6 +47,7 @@ export default function AboutPage() {
         imageAlt="About Excess Energy"
       />
       <CompanyStory />
+      <TheFounders />
       <MissionVision />
       <CoreValues />
       <WhyExcess />
