@@ -6,6 +6,7 @@ import { CtaSection } from "@/components/sections/cta/cta-section";
 import { PackageBenefits } from "@/components/sections/service/package-benefits";
 import { PackageDetail } from "@/components/sections/service/package-detail";
 import { ServiceFaq } from "@/components/sections/service/service-faq";
+import { PackageCtaButtons } from "@/components/sections/service/package-cta-buttons";
 import { getSolarPackage, getSolarPackageSlugs } from "@/lib/content/packages";
 import { buildMetadata } from "@/lib/content/seo";
 import { breadcrumbSchema, serviceSchema } from "@/lib/content/structured-data";
@@ -66,7 +67,12 @@ export default async function SolarPackagePage({
         heading={`Ready to move forward with ${solarPackage.name}?`}
         lead="Start with a free energy assessment and we will design the right system for your needs."
         headingId="package-cta-heading"
-      />
+      >
+        <PackageCtaButtons
+          packageName={solarPackage.name}
+          packageSlug={solarPackage.slug}
+        />
+      </CtaSection>
     </>
   );
 }

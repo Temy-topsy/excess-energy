@@ -23,12 +23,25 @@ export function useLeadForm<TValues>() {
   const inFlight = React.useRef(false);
 
   const submit = React.useCallback(
-    async (values: TValues, toWhatsappUrl: (values: TValues) => string) => {
+    async (
+      values: TValues,
+      toWhatsappUrl: (values: TValues) => string,
+      onBeforeRedirect?: (values: TValues) => Promise<void> | void
+    ) => {
       if (inFlight.current) return;
       inFlight.current = true;
       setStatus("submitting");
 
       try {
+        // Execute server capture/alert before opening WhatsApp
+        if (onBeforeRedirect) {
+          try {
+            await onBeforeRedirect(values);
+          } catch (e) {
+            console.error("Lead pre-redirect capture error:", e);
+          }
+        }
+
         const url = toWhatsappUrl(values);
         setWhatsappUrl(url);
 
@@ -37,10 +50,6 @@ export function useLeadForm<TValues>() {
         if (typeof window !== "undefined") {
           window.open(url, "_blank", "noopener,noreferrer");
         }
-
-        // Future email seam: to also deliver the lead server side, call the
-        // provider agnostic notifier here with `values`. The forms already
-        // pass their values, so turning email on needs no change to them.
 
         setStatus("success");
       } catch {

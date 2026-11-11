@@ -21,6 +21,7 @@ import {
   TextareaField,
 } from "@/components/forms/fields";
 import { subscribeEmailDirect } from "@/app/actions/subscribe-direct";
+import { captureLeadAction } from "@/app/admin/leads/actions";
 
 /**
  * The contact form. Collects only what an assessment needs (name, phone,
@@ -54,7 +55,17 @@ function ContactForm() {
     if (wantsNewsletter && newsletterEmail.trim()) {
       void subscribeEmailDirect(newsletterEmail.trim());
     }
-    submit(values, contactWhatsappUrl);
+
+    await submit(values, contactWhatsappUrl, async (val) => {
+      await captureLeadAction({
+        name: val.name,
+        phone: val.phone,
+        email: wantsNewsletter && newsletterEmail.trim() ? newsletterEmail.trim() : undefined,
+        service: val.service,
+        source: "contact",
+        message: val.message,
+      });
+    });
   });
 
   if (status === "success") {

@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Package, Mail, ExternalLink, LogOut } from "lucide-react";
+import { Package, Mail, Users, ExternalLink, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { logoutAction } from "@/app/admin/actions";
 
 export function AdminHeader() {
   const pathname = usePathname();
 
+  const isLeads = pathname.startsWith("/admin/leads");
   const isPackages = pathname.startsWith("/admin/packages");
   const isBroadcast = pathname.startsWith("/admin/broadcast");
 
@@ -23,6 +24,17 @@ export function AdminHeader() {
         </div>
 
         <nav className="flex items-center gap-2 border-l border-border pl-6">
+          <Link
+            href="/admin/leads"
+            className={`inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+              isLeads
+                ? "bg-amber-500 text-slate-950 font-semibold"
+                : "text-muted-foreground hover:bg-muted hover:text-foreground"
+            }`}
+          >
+            <Users className="h-4 w-4" />
+            Sales & Leads
+          </Link>
           <Link
             href="/admin/packages"
             className={`inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${

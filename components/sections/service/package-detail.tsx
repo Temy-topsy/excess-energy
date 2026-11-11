@@ -14,6 +14,7 @@ function PackageDetail({ solarPackage }: { solarPackage: SolarPackage }) {
         alt={alt}
         width={1200}
         height={900}
+        unoptimized
         className="h-auto w-full object-cover"
       />
     ) : (
@@ -46,6 +47,7 @@ function PackageDetail({ solarPackage }: { solarPackage: SolarPackage }) {
                   priority
                   width={800}
                   height={600}
+                  unoptimized
                   className="h-auto w-full object-contain"
                 />
               ) : (

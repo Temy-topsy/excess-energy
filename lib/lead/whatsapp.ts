@@ -65,3 +65,18 @@ export function contactWhatsappUrl(values: ContactValues): string {
 export function quoteWhatsappUrl(values: QuoteValues): string {
   return buildWhatsappUrl(buildQuoteMessage(values));
 }
+
+/** Convenience: full WhatsApp URL for ordering/inquiring on a specific solar package. */
+export function packageWhatsappUrl(packageName: string, packageSlug?: string): string {
+  const message = [
+    `Hello ${company.name}, I would like to get started with the *${packageName} Solar Package*.`,
+    "",
+    "Please share the current pricing, technical specifications, and earliest installation schedule for this package.",
+    packageSlug ? `(Package link: https://excessenergy.app/services/excess-solar/${packageSlug})` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return buildWhatsappUrl(message);
+}
+

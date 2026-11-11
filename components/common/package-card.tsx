@@ -26,6 +26,7 @@ function PackageCard({
             width={600}
             height={450}
             sizes="(min-width: 640px) 50vw, 100vw"
+            unoptimized
             className="h-full w-full object-contain transition-transform duration-[var(--duration-slow)] ease-[var(--ease-standard)] group-hover:scale-[1.015] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
           />
         ) : (

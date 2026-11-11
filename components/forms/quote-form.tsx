@@ -21,6 +21,7 @@ import {
   TextareaField,
 } from "@/components/forms/fields";
 import { subscribeEmailDirect } from "@/app/actions/subscribe-direct";
+import { captureLeadAction } from "@/app/admin/leads/actions";
 
 /**
  * The quote form. Collects name, phone, service, location, project description.
@@ -50,7 +51,18 @@ function QuoteForm() {
     if (wantsNewsletter && newsletterEmail.trim()) {
       void subscribeEmailDirect(newsletterEmail.trim());
     }
-    submit(values, quoteWhatsappUrl);
+
+    await submit(values, quoteWhatsappUrl, async (val) => {
+      await captureLeadAction({
+        name: val.name,
+        phone: val.phone,
+        email: wantsNewsletter && newsletterEmail.trim() ? newsletterEmail.trim() : undefined,
+        location: val.location,
+        service: val.service,
+        source: "quote",
+        message: val.description,
+      });
+    });
   });
 
   if (status === "success") {
